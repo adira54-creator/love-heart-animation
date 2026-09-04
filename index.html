@@ -28,13 +28,17 @@ html,body{
     overflow:hidden;
 }
 
-/* ---------- BACKGROUNDS ---------- */
+/* ================= BACKGROUNDS ================= */
 
 .home{
     position:absolute;
     inset:0;
     background:
-        radial-gradient(circle at 50% 30%,#ffd6e7 0%,#f7a9c5 35%,#9b5575 100%);
+        radial-gradient(circle at 50% 30%,
+        #ffd6e7 0%,
+        #f7a9c5 35%,
+        #9b5575 100%);
+    z-index:0;
 }
 
 .snow{
@@ -42,8 +46,12 @@ html,body{
     inset:0;
     opacity:0;
     background:
-        linear-gradient(#b9d9ef,#eaf7ff 60%,#fff);
+        linear-gradient(
+        #b9d9ef,
+        #eaf7ff 60%,
+        #ffffff);
     transition:opacity 1s;
+    z-index:0;
 }
 
 .desert{
@@ -51,8 +59,13 @@ html,body{
     inset:0;
     opacity:0;
     background:
-        linear-gradient(#69c9ff 0%,#bcecff 45%,#e6a653 46%,#c77b32 100%);
+        linear-gradient(
+        #69c9ff 0%,
+        #bcecff 45%,
+        #e6a653 46%,
+        #c77b32 100%);
     transition:opacity 1s;
+    z-index:0;
 }
 
 .space{
@@ -67,9 +80,10 @@ html,body{
         #02020d;
     background-size:180px 180px;
     transition:opacity 1s;
+    z-index:0;
 }
 
-/* ---------- CHARACTERS ---------- */
+/* ================= CHARACTERS ================= */
 
 .person{
     position:absolute;
@@ -81,15 +95,15 @@ html,body{
     z-index:5;
 }
 
-.Girl{
+.girl{
     left:8%;
 }
 
-.Boy{
+.boy{
     right:8%;
 }
 
-/* ---------- HEART ---------- */
+/* ================= HEART ================= */
 
 .heart{
     position:absolute;
@@ -101,13 +115,14 @@ html,body{
     transform:scale(1);
 }
 
-/* ---------- THROW ---------- */
+/* ================= THROW ================= */
 
 .throw{
     animation:throwHeart 1.8s ease-in forwards;
 }
 
 @keyframes throwHeart{
+
     0%{
         left:43%;
         bottom:36%;
@@ -127,20 +142,32 @@ html,body{
     }
 }
 
-/* ---------- HIT ---------- */
+/* ================= HIT ================= */
 
 .hit{
     animation:hitBoy .8s ease forwards;
 }
 
 @keyframes hitBoy{
-    0%{transform:translateX(0) rotate(0);}
-    35%{transform:translateX(35px) rotate(8deg);}
-    70%{transform:translateX(-25px) rotate(-8deg);}
-    100%{transform:translateX(0) rotate(0);}
+
+    0%{
+        transform:translateX(0) rotate(0);
+    }
+
+    35%{
+        transform:translateX(35px) rotate(8deg);
+    }
+
+    70%{
+        transform:translateX(-25px) rotate(-8deg);
+    }
+
+    100%{
+        transform:translateX(0) rotate(0);
+    }
 }
 
-/* ---------- PORTAL ---------- */
+/* ================= PORTAL ================= */
 
 .portal{
     position:absolute;
@@ -149,8 +176,19 @@ html,body{
     right:4%;
     bottom:20%;
     border-radius:50% 50% 10% 10%;
-    background:radial-gradient(circle,#fff,#9c5cff 35%,#31105e 70%,transparent 72%);
-    box-shadow:0 0 35px #b56cff,0 0 80px #7b29ff;
+
+    background:
+        radial-gradient(
+        circle,
+        #fff,
+        #9c5cff 35%,
+        #31105e 70%,
+        transparent 72%);
+
+    box-shadow:
+        0 0 35px #b56cff,
+        0 0 80px #7b29ff;
+
     opacity:0;
     transform:scale(.2);
     z-index:3;
@@ -161,27 +199,31 @@ html,body{
 }
 
 @keyframes portalOpen{
+
     0%{
         opacity:0;
         transform:scale(.2);
     }
+
     60%{
         opacity:1;
         transform:scale(1.15);
     }
+
     100%{
         opacity:1;
         transform:scale(1);
     }
 }
 
-/* ---------- BOY JOURNEY ---------- */
+/* ================= BOY JOURNEY ================= */
 
 .travel{
     animation:travelBoy 3.5s ease-in-out forwards;
 }
 
 @keyframes travelBoy{
+
     0%{
         right:8%;
         bottom:7vh;
@@ -207,13 +249,14 @@ html,body{
     }
 }
 
-/* ---------- DESERT JOURNEY ---------- */
+/* ================= DESERT ================= */
 
 .desertMove{
     animation:desertMove 3s ease-in-out forwards;
 }
 
 @keyframes desertMove{
+
     0%{
         right:50%;
         bottom:42vh;
@@ -233,21 +276,30 @@ html,body{
     }
 }
 
-/* ---------- EARTH ---------- */
+/* ================= EARTH ================= */
 
 .earth{
     position:absolute;
     width:180px;
     height:180px;
     border-radius:50%;
+
     left:50%;
     top:50%;
+
     transform:translate(-50%,-50%);
+
     background:
-        radial-gradient(circle at 35% 35%,#6ee7ff,#1877d2 45%,#06345f 75%);
+        radial-gradient(
+        circle at 35% 35%,
+        #6ee7ff,
+        #1877d2 45%,
+        #06345f 75%);
+
     box-shadow:
         0 0 30px #4dc7ff,
         0 0 70px #1685d8;
+
     opacity:0;
     z-index:2;
 }
@@ -257,28 +309,45 @@ html,body{
 }
 
 @keyframes earthShow{
+
     from{
         opacity:0;
-        transform:translate(-50%,-50%) scale(.4);
+        transform:
+            translate(-50%,-50%)
+            scale(.4);
     }
+
     to{
         opacity:1;
-        transform:translate(-50%,-50%) scale(1);
+        transform:
+            translate(-50%,-50%)
+            scale(1);
     }
 }
 
-/* ---------- ORBIT ---------- */
+/* ================= ORBIT ================= */
 
 .orbit{
     position:absolute;
+
     width:330px;
     height:180px;
-    border:2px solid rgba(255,255,255,.45);
+
+    border:
+        2px solid
+        rgba(255,255,255,.45);
+
     border-radius:50%;
+
     left:50%;
     top:50%;
-    transform:translate(-50%,-50%) rotate(-15deg);
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-15deg);
+
     opacity:0;
+    z-index:3;
 }
 
 .orbit.show{
@@ -286,43 +355,65 @@ html,body{
 }
 
 @keyframes orbitShow{
-    from{opacity:0;}
-    to{opacity:1;}
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
 }
 
+/* ================= ORBIT BOY ================= */
+
 .orbitBoy{
-    animation:orbitBoy 4s linear infinite;
+    animation:
+        orbitBoy 4s linear infinite;
 }
 
 @keyframes orbitBoy{
+
     0%{
-        transform:translate(-165px,-10px) scale(.35);
+        transform:
+            translate(-165px,-10px)
+            scale(.35);
     }
 
     25%{
-        transform:translate(-50px,-100px) scale(.32);
+        transform:
+            translate(-50px,-100px)
+            scale(.32);
     }
 
     50%{
-        transform:translate(165px,-10px) scale(.35);
+        transform:
+            translate(165px,-10px)
+            scale(.35);
     }
 
     75%{
-        transform:translate(50px,90px) scale(.32);
+        transform:
+            translate(50px,90px)
+            scale(.32);
     }
 
     100%{
-        transform:translate(-165px,-10px) scale(.35);
+        transform:
+            translate(-165px,-10px)
+            scale(.35);
     }
 }
 
-/* ---------- RETURN ---------- */
+/* ================= RETURN ================= */
 
 .return{
-    animation:returnBoy 3s ease-in forwards;
+    animation:
+        returnBoy 3s ease-in forwards;
 }
 
 @keyframes returnBoy{
+
     0%{
         right:50%;
         bottom:40vh;
@@ -342,42 +433,57 @@ html,body{
     }
 }
 
-/* ---------- HUG ---------- */
+/* ================= FINAL HUG ================= */
 
-.Hug{
+.hug{
     position:absolute;
+
     width:auto;
     height:65vh;
     max-height:600px;
+
     left:50%;
     bottom:3vh;
-    transform:translateX(-50%) scale(.5);
+
+    transform:
+        translateX(-50%)
+        scale(.5);
+
     opacity:0;
+
     z-index:20;
 }
 
-.Hug.show{
-    animation:HugShow 1.5s ease-out forwards;
+.hug.show{
+    animation:
+        hugShow 1.5s ease-out forwards;
 }
 
-@keyframes HugShow{
+@keyframes hugShow{
+
     0%{
         opacity:0;
-        transform:translateX(-50%) scale(.5);
+        transform:
+            translateX(-50%)
+            scale(.5);
     }
 
     70%{
         opacity:1;
-        transform:translateX(-50%) scale(1.08);
+        transform:
+            translateX(-50%)
+            scale(1.08);
     }
 
     100%{
         opacity:1;
-        transform:translateX(-50%) scale(1);
+        transform:
+            translateX(-50%)
+            scale(1);
     }
 }
 
-/* ---------- FINAL HEARTS ---------- */
+/* ================= FINAL HEARTS ================= */
 
 .finalHeart{
     position:absolute;
@@ -386,20 +492,43 @@ html,body{
     opacity:0;
 }
 
-.h1{left:20%;bottom:20%;}
-.h2{left:35%;bottom:35%;}
-.h3{left:55%;bottom:25%;}
-.h4{left:70%;bottom:40%;}
-.h5{left:45%;bottom:55%;}
+.h1{
+    left:20%;
+    bottom:20%;
+}
+
+.h2{
+    left:35%;
+    bottom:35%;
+}
+
+.h3{
+    left:55%;
+    bottom:25%;
+}
+
+.h4{
+    left:70%;
+    bottom:40%;
+}
+
+.h5{
+    left:45%;
+    bottom:55%;
+}
 
 .hearts .finalHeart{
-    animation:floatHeart 3s ease-in-out infinite;
+    animation:
+        floatHeart 3s ease-in-out infinite;
 }
 
 @keyframes floatHeart{
+
     0%{
         opacity:0;
-        transform:translateY(20px) scale(.5);
+        transform:
+            translateY(20px)
+            scale(.5);
     }
 
     30%{
@@ -408,11 +537,13 @@ html,body{
 
     100%{
         opacity:0;
-        transform:translateY(-150px) scale(1.3);
+        transform:
+            translateY(-150px)
+            scale(1.3);
     }
 }
 
-/* ---------- MOBILE ---------- */
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
@@ -421,11 +552,11 @@ html,body{
         bottom:9vh;
     }
 
-    .Girl{
+    .girl{
         left:2%;
     }
 
-    .Boy{
+    .boy{
         right:2%;
     }
 
@@ -450,7 +581,7 @@ html,body{
         height:140px;
     }
 
-    .Hug{
+    .hug{
         height:55vh;
         bottom:7vh;
     }
@@ -463,29 +594,52 @@ html,body{
 <div class="scene">
 
     <!-- BACKGROUNDS -->
+
     <div class="home" id="home"></div>
     <div class="snow" id="snow"></div>
     <div class="desert" id="desert"></div>
     <div class="space" id="space"></div>
 
+
     <!-- CHARACTERS -->
-    <img src="Girl.png" class="person girl" id="girl">
-    <img src="Boy.png" class="person boy" id="boy">
+
+    <img src="Girl.png"
+         class="person girl"
+         id="girl">
+
+    <img src="Boy.png"
+         class="person boy"
+         id="boy">
+
 
     <!-- HEART -->
-    <div class="heart" id="heart">❤️</div>
+
+    <div class="heart" id="heart">
+        ❤️
+    </div>
+
 
     <!-- PORTAL -->
+
     <div class="portal" id="portal"></div>
 
+
     <!-- EARTH -->
+
     <div class="earth" id="earth"></div>
+
     <div class="orbit" id="orbit"></div>
 
+
     <!-- FINAL HUG -->
-    <img src="Hug.png" class="hug" id="hug">
+
+    <img src="Hug.png"
+         class="hug"
+         id="hug">
+
 
     <!-- FLOATING HEARTS -->
+
     <div class="finalHeart h1">❤️</div>
     <div class="finalHeart h2">💗</div>
     <div class="finalHeart h3">💕</div>
@@ -494,137 +648,187 @@ html,body{
 
 </div>
 
+
 <script>
 
-const heart = document.getElementById("heart");
-const boy = document.getElementById("boy");
-const portal = document.getElementById("portal");
+/* ================= ELEMENTS ================= */
 
-const snow = document.getElementById("snow");
-const desert = document.getElementById("desert");
-const space = document.getElementById("space");
+const heart =
+    document.getElementById("heart");
 
-const earth = document.getElementById("earth");
-const orbit = document.getElementById("orbit");
+const boy =
+    document.getElementById("boy");
 
-const hug = document.getElementById("hug");
+const girl =
+    document.getElementById("girl");
 
-const finalHearts = document.querySelectorAll(".finalHeart");
+const portal =
+    document.getElementById("portal");
+
+const snow =
+    document.getElementById("snow");
+
+const desert =
+    document.getElementById("desert");
+
+const space =
+    document.getElementById("space");
+
+const earth =
+    document.getElementById("earth");
+
+const orbit =
+    document.getElementById("orbit");
+
+const hug =
+    document.getElementById("hug");
+
+const scene =
+    document.querySelector(".scene");
+
+const finalHearts =
+    document.querySelectorAll(".finalHeart");
 
 
-/* 1 — HEART THROW */
+/* ================= 1 — HEART THROW ================= */
 
 setTimeout(() => {
+
     heart.classList.add("throw");
+
 },2000);
 
 
-/* 2 — HEART HITS BOY */
+/* ================= 2 — HEART HITS BOY ================= */
 
 setTimeout(() => {
+
     heart.style.opacity="0";
+
     boy.classList.add("hit");
+
 },3800);
 
 
-/* 3 — PORTAL OPENS */
+/* ================= 3 — PORTAL OPENS ================= */
 
 setTimeout(() => {
+
     portal.classList.add("open");
+
 },4800);
 
 
-/* 4 — BOY ENTERS PORTAL */
+/* ================= 4 — BOY ENTERS PORTAL ================= */
 
 setTimeout(() => {
+
     boy.classList.add("travel");
+
 },5700);
 
 
-/* 5 — SNOW WORLD */
+/* ================= 5 — SNOW WORLD ================= */
 
 setTimeout(() => {
+
     snow.style.opacity="1";
+
 },7200);
 
 
-/* 6 — DESERT */
+/* ================= 6 — DESERT ================= */
 
 setTimeout(() => {
+
     snow.style.opacity="0";
+
     desert.style.opacity="1";
 
     boy.classList.remove("travel");
+
     boy.classList.add("desertMove");
+
 },10500);
 
 
-/* 7 — SPACE */
+/* ================= 7 — SPACE ================= */
 
 setTimeout(() => {
 
     desert.style.opacity="0";
+
     space.style.opacity="1";
 
     boy.style.opacity="0";
 
     earth.classList.add("show");
+
     orbit.classList.add("show");
 
 },13500);
 
 
-/* 8 — BOY ORBITS EARTH */
+/* ================= 8 — BOY ORBITS EARTH ================= */
 
 setTimeout(() => {
 
-    Boy.style.opacity="1";
+    boy.style.opacity="1";
 
-    Boy.classList.remove("desertMove");
+    boy.classList.remove("desertMove");
 
-    Boy.style.position="absolute";
-    Boy.style.left="50%";
-    Boy.style.top="50%";
-    Boy.style.right="auto";
-    Boy.style.bottom="auto";
+    boy.style.position="absolute";
 
-    Boy.classList.add("orbitBoy");
+    boy.style.left="50%";
+
+    boy.style.top="50%";
+
+    boy.style.right="auto";
+
+    boy.style.bottom="auto";
+
+    boy.classList.add("orbitBoy");
 
 },14500);
 
 
-/* 9 — RETURN */
+/* ================= 9 — RETURN ================= */
 
 setTimeout(() => {
 
-    Boy.classList.remove("orbitBoy");
+    boy.classList.remove("orbitBoy");
 
     earth.style.opacity="0";
+
     orbit.style.opacity="0";
 
-    Boy.classList.add("return");
+    boy.classList.add("return");
 
 },19000);
 
 
-/* 10 — FINAL HUG */
+/* ================= 10 — FINAL HUG ================= */
 
 setTimeout(() => {
 
-    Boy.style.opacity="0";
-    Hug.classList.add("show");
+    boy.style.opacity="0";
+
+    hug.classList.add("show");
 
 },22000);
 
 
-/* 11 — HEARTS */
+/* ================= 11 — FLOATING HEARTS ================= */
 
 setTimeout(() => {
 
-    document.body.classList.add("hearts");
+    scene.classList.add("hearts");
 
     finalHearts.forEach((h,i)=>{
-        h.style.animationDelay=(i*0.4)+"s";
+
+        h.style.animationDelay =
+            (i*0.4)+"s";
+
     });
 
 },23000);
