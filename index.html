@@ -3,60 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Our Journey ❤️</title>
+<title>Our Little Love Story ❤️</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html,body{
     width:100%;
     height:100%;
     overflow:hidden;
-    background:#000;
-    font-family:Arial,sans-serif;
+    background:#09070b;
+    font-family:Georgia,serif;
 }
 
-.scene{
+#story{
     position:relative;
-    width:100%;
+    width:100vw;
     height:100vh;
     overflow:hidden;
+    background:#09070b;
 }
 
-/* =====================================================
-   ALL SCENES
-===================================================== */
+/* =========================
+   SCENE SYSTEM
+========================= */
 
-.sceneLayer{
+.scene{
     position:absolute;
     inset:0;
+    width:100%;
+    height:100%;
     opacity:0;
+    visibility:hidden;
     pointer-events:none;
-    transition:opacity 1.2s ease;
+    overflow:hidden;
+    transition:opacity 1s ease;
 }
 
-.sceneLayer.active{
+.scene.active{
     opacity:1;
+    visibility:visible;
 }
 
+/* =========================
+   CHARACTERS
+========================= */
 
-/* =====================================================
-   SCENE 1 — GIRL'S ROOM
-===================================================== */
+.character{
+    position:absolute;
+    width:270px;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none;
+    filter:drop-shadow(0 12px 12px rgba(0,0,0,.35));
+}
+
+.girl{
+    width:285px;
+}
+
+.boy{
+    width:285px;
+}
+
+/* =========================
+   ROOM
+========================= */
 
 .room{
     background:
-        radial-gradient(
-            circle at 50% 25%,
-            #ffeaf3 0%,
-            #f6bfd4 35%,
-            #a65e7b 100%
-        );
+        radial-gradient(circle at 50% 28%,rgba(255,190,210,.16),transparent 25%),
+        linear-gradient(to bottom,#261b29 0%,#17131c 63%,#0c0a10 63%,#09070b 100%);
 }
 
 .room::before{
@@ -64,1144 +85,1370 @@ html,body{
     position:absolute;
     left:0;
     right:0;
+    top:0;
+    height:63%;
+    background:
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:55px 55px;
+    opacity:.4;
+}
+
+/* floor */
+.room::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
     bottom:0;
-    height:30%;
+    height:37%;
     background:
-        linear-gradient(
-            #d69aa9,
-            #9b5c70
-        );
-}
-
-.roomWindow{
-    position:absolute;
-    width:24vw;
-    height:32vh;
-    max-width:190px;
-    max-height:260px;
-    left:12%;
-    top:14%;
-    border:10px solid rgba(255,255,255,.45);
-    background:
-        linear-gradient(
-            135deg,
-            #b9e9ff,
-            #fff
-        );
-    box-shadow:
-        0 0 25px rgba(255,255,255,.35);
-}
-
-.roomLight{
-    position:absolute;
-    width:40vw;
-    height:40vw;
-    max-width:450px;
-    max-height:450px;
-    left:50%;
-    top:5%;
-    transform:translateX(-50%);
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.5),
-            transparent 65%
-        );
-}
-
-
-/* =====================================================
-   CHARACTERS
-===================================================== */
-
-.girl{
-    position:absolute;
-    height:58vh;
-    max-height:550px;
-    width:auto;
-    left:8%;
-    bottom:5vh;
-    z-index:20;
-    object-fit:contain;
-}
-
-.boy{
-    position:absolute;
-    height:56vh;
-    max-height:530px;
-    width:auto;
-    right:8%;
-    bottom:6vh;
-    z-index:20;
-    object-fit:contain;
-    opacity:0;
-}
-
-
-/* =====================================================
-   SMALL HEART IN GIRL'S HAND
-===================================================== */
-
-.handHeart{
-    position:absolute;
-    z-index:25;
-    left:38%;
-    bottom:37%;
-    font-size:25px;
-
-    filter:
-        drop-shadow(0 0 8px #ff4f91);
-
-    transform:
-        scale(.7);
-}
-
-
-/* =====================================================
-   THROWING HEART
-===================================================== */
-
-.handHeart.fly{
-    animation:
-        heartJourney 2.6s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-@keyframes heartJourney{
-
-    0%{
-        left:38%;
-        bottom:37%;
-        font-size:25px;
-        transform:
-            scale(.7)
-            rotate(0deg);
-    }
-
-    20%{
-        left:45%;
-        bottom:43%;
-        font-size:45px;
-        transform:
-            scale(1)
-            rotate(-8deg);
-    }
-
-    45%{
-        left:57%;
-        bottom:50%;
-        font-size:65px;
-        transform:
-            scale(1.1)
-            rotate(10deg);
-    }
-
-    70%{
-        left:69%;
-        bottom:46%;
-        font-size:72px;
-        transform:
-            scale(1)
-            rotate(-8deg);
-    }
-
-    92%{
-        left:79%;
-        bottom:39%;
-        font-size:68px;
-        transform:
-            scale(.95)
-            rotate(5deg);
-    }
-
-    100%{
-        left:83%;
-        bottom:38%;
-        font-size:60px;
-        transform:
-            scale(.85)
-            rotate(0deg);
-    }
-}
-
-
-/* =====================================================
-   IMPACT
-===================================================== */
-
-.impact{
-    animation:
-        boyImpact .65s cubic-bezier(.2,.8,.3,1);
-}
-
-@keyframes boyImpact{
-
-    0%{
-        transform:
-            translateX(0)
-            rotate(0);
-    }
-
-    20%{
-        transform:
-            translateX(45px)
-            rotate(8deg);
-    }
-
-    45%{
-        transform:
-            translateX(-35px)
-            rotate(-7deg);
-    }
-
-    70%{
-        transform:
-            translateX(20px)
-            rotate(4deg);
-    }
-
-    100%{
-        transform:
-            translateX(0)
-            rotate(0);
-    }
-}
-
-
-/* =====================================================
-   IMPACT FLASH
-===================================================== */
-
-.impactFlash{
-    position:absolute;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    background:#fff;
-    box-shadow:
-        0 0 20px #fff,
-        0 0 50px #ff4f91,
-        0 0 90px #ff4f91;
-    opacity:0;
-    z-index:40;
-}
-
-.impactFlash.show{
-    animation:
-        flash .55s ease-out forwards;
-}
-
-@keyframes flash{
-
-    0%{
-        opacity:1;
-        transform:scale(.5);
-    }
-
-    100%{
-        opacity:0;
-        transform:scale(8);
-    }
-}
-
-
-/* =====================================================
-   DOOR WORLD
-===================================================== */
-
-.doorWorld{
-    background:
-        linear-gradient(
+        repeating-linear-gradient(
             90deg,
-            #15121a 0%,
-            #25202a 50%,
-            #111 100%
-        );
+            rgba(255,255,255,.035) 0px,
+            rgba(255,255,255,.035) 2px,
+            transparent 2px,
+            transparent 75px
+        ),
+        linear-gradient(to bottom,#17131a,#09070b);
+}
+
+/* window */
+.window{
+    position:absolute;
+    top:12%;
+    left:9%;
+    width:115px;
+    height:155px;
+    border:7px solid #403041;
+    border-radius:5px;
+    background:
+        radial-gradient(circle at 70% 25%,#fff4b8 0 4px,transparent 5px),
+        linear-gradient(#20294b,#11172d);
+    box-shadow:0 0 30px rgba(120,130,255,.15);
+    z-index:2;
+}
+
+.window:before,
+.window:after{
+    content:"";
+    position:absolute;
+    background:#403041;
+}
+
+.window:before{
+    width:5px;
+    height:100%;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.window:after{
+    height:5px;
+    width:100%;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* lamp */
+.lamp{
+    position:absolute;
+    right:9%;
+    bottom:28%;
+    width:80px;
+    height:130px;
+    z-index:3;
+}
+
+.lamp .shade{
+    position:absolute;
+    top:0;
+    left:5px;
+    width:70px;
+    height:55px;
+    background:linear-gradient(135deg,#e9b9ce,#9e627f);
+    clip-path:polygon(15% 0,85% 0,100% 100%,0 100%);
+    box-shadow:0 0 35px rgba(255,175,210,.25);
+}
+
+.lamp .stand{
+    position:absolute;
+    top:50px;
+    left:37px;
+    width:6px;
+    height:65px;
+    background:#5d4657;
+}
+
+.lamp .base{
+    position:absolute;
+    bottom:0;
+    left:17px;
+    width:45px;
+    height:7px;
+    border-radius:50%;
+    background:#5d4657;
+}
+
+/* =========================
+   GIRL FIRST SCENE
+========================= */
+
+.girl-start{
+    left:50%;
+    bottom:9%;
+    transform:translateX(-50%);
+    animation:girlBreath 3s ease-in-out infinite;
+    z-index:8;
+}
+
+@keyframes girlBreath{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(-5px);}
+}
+
+/* heart starts near her raised/right hand */
+.throw-heart{
+    position:absolute;
+    width:30px;
+    height:30px;
+    left:calc(50% + 91px);
+    bottom:36%;
+    z-index:15;
+    opacity:0;
+    transform:rotate(-45deg) scale(.35);
+}
+
+.throw-heart::before,
+.throw-heart::after{
+    content:"";
+    position:absolute;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#ff315f;
+    box-shadow:0 0 22px rgba(255,50,95,.65);
+}
+
+.throw-heart::before{
+    top:-15px;
+    left:0;
+}
+
+.throw-heart::after{
+    top:0;
+    left:15px;
+}
+
+.throw-heart{
+    background:#ff315f;
+}
+
+/* =========================
+   IMPACT SCENE
+========================= */
+
+.impact-bg{
+    background:
+        radial-gradient(circle at 50% 45%,rgba(255,50,90,.12),transparent 22%),
+        linear-gradient(#18111b,#09070b);
+}
+
+.impact-boy{
+    left:50%;
+    bottom:10%;
+    transform:translateX(-50%);
+    z-index:6;
+}
+
+.impact-heart{
+    position:absolute;
+    width:75px;
+    height:75px;
+    left:50%;
+    top:43%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    z-index:12;
+}
+
+.impact-heart:before,
+.impact-heart:after{
+    content:"";
+    position:absolute;
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#ff315f;
+    box-shadow:
+        0 0 25px #ff315f,
+        0 0 60px rgba(255,49,95,.5);
+}
+
+.impact-heart:before{
+    top:-37px;
+}
+
+.impact-heart:after{
+    left:37px;
+}
+
+.impact-ring{
+    position:absolute;
+    left:50%;
+    top:43%;
+    width:80px;
+    height:80px;
+    border:4px solid rgba(255,255,255,.8);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    opacity:0;
+}
+
+.impact.active .impact-ring{
+    animation:impactRing .7s ease-out forwards;
+}
+
+@keyframes impactRing{
+    0%{opacity:1;width:70px;height:70px;}
+    100%{opacity:0;width:430px;height:430px;}
+}
+
+.impact.active .impact-boy{
+    animation:boyHit 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes boyHit{
+    0%{transform:translateX(-50%) rotate(0deg);}
+    12%{transform:translateX(-50%) rotate(-5deg) translateX(-8px);}
+    25%{transform:translateX(-50%) rotate(7deg) translateX(14px);}
+    42%{transform:translateX(-50%) rotate(-6deg) translateX(-18px);}
+    60%{transform:translateX(-50%) rotate(5deg) translateX(12px);}
+    100%{transform:translateX(-50%) translate(250px,-10px) rotate(18deg);}
+}
+
+/* =========================
+   DOOR SCENE
+========================= */
+
+.door-scene{
+    background:linear-gradient(#171522,#08070c);
+}
+
+.door-frame{
+    position:absolute;
+    width:250px;
+    height:440px;
+    left:50%;
+    bottom:10%;
+    transform:translateX(-50%);
+    border:14px solid #392b32;
+    background:#120f15;
+    box-shadow:
+        0 0 0 5px #171117,
+        0 20px 60px rgba(0,0,0,.7);
+    z-index:2;
 }
 
 .door{
     position:absolute;
-    width:34vw;
-    height:65vh;
-    max-width:300px;
-    max-height:560px;
-    left:50%;
-    bottom:0;
-    transform:translateX(-50%);
-
+    inset:12px;
     background:
-        linear-gradient(
-            90deg,
-            #3a2020,
-            #7a4a3c,
-            #291717
-        );
-
-    border:
-        12px solid #241313;
-
-    box-shadow:
-        inset 0 0 35px #000,
-        0 0 30px rgba(255,255,255,.1);
+        linear-gradient(90deg,rgba(255,255,255,.04),transparent 30%),
+        linear-gradient(#4a3540,#211820);
+    border:4px solid #5b4149;
 }
 
-.door.open{
-    animation:
-        doorOpen 1.2s ease-in-out forwards;
+.door-knob{
+    position:absolute;
+    right:24px;
+    top:52%;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:#e1b56b;
+    box-shadow:0 0 10px rgba(225,181,107,.5);
+}
+
+.snow-light{
+    position:absolute;
+    inset:12px;
+    opacity:0;
+    background:
+        radial-gradient(circle at 30% 25%,#fff 0 2px,transparent 3px),
+        radial-gradient(circle at 70% 45%,#fff 0 2px,transparent 3px),
+        linear-gradient(#b8d7ec,#eaf7ff);
+    transition:opacity 1s ease;
+}
+
+.door-scene.open .door{
+    animation:doorOpen 1.2s ease forwards;
     transform-origin:left center;
 }
 
+.door-scene.open .snow-light{
+    opacity:1;
+}
+
 @keyframes doorOpen{
-
-    0%{
-        transform:
-            translateX(-50%)
-            perspective(500px)
-            rotateY(0);
-    }
-
-    100%{
-        transform:
-            translateX(-50%)
-            perspective(500px)
-            rotateY(-72deg);
-    }
+    to{transform:perspective(600px) rotateY(-72deg);}
 }
 
-.doorLight{
-    position:absolute;
-    width:28vw;
-    height:60vh;
-    max-width:260px;
-    max-height:520px;
+.door-boy{
+    width:210px;
     left:50%;
-    bottom:0;
+    bottom:15%;
     transform:translateX(-50%);
-
-    background:
-        radial-gradient(
-            ellipse,
-            #eaffff,
-            #a9eaff 45%,
-            transparent 72%
-        );
-
-    opacity:0;
+    z-index:4;
 }
 
-.doorLight.show{
-    animation:
-        doorLight 1.2s forwards;
+.door-scene.open .door-boy{
+    animation:boyThroughDoor 2.2s 1s ease-in forwards;
 }
 
-@keyframes doorLight{
-
-    0%{
-        opacity:0;
-    }
-
-    50%{
-        opacity:.9;
-    }
-
-    100%{
-        opacity:1;
-    }
+@keyframes boyThroughDoor{
+    0%{transform:translateX(-50%) scale(.8);}
+    100%{transform:translateX(180%) scale(.45);opacity:0;}
 }
 
-
-/* =====================================================
+/* =========================
    SNOW
-===================================================== */
+========================= */
 
-.snowWorld{
+.snow-scene{
     background:
-        linear-gradient(
-            #8fc7e8 0%,
-            #dff5ff 52%,
-            #f7fbff 100%
-        );
+        radial-gradient(circle at 80% 15%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+        linear-gradient(#263b58 0%,#7699b7 45%,#eaf7ff 100%);
 }
 
-.snowGround{
+.mountain{
     position:absolute;
-    left:-5%;
-    right:-5%;
+    bottom:28%;
+    width:0;
+    height:0;
+    border-left:180px solid transparent;
+    border-right:180px solid transparent;
+    border-bottom:300px solid #536b82;
+    opacity:.7;
+}
+
+.m1{left:-80px;}
+.m2{right:-100px;transform:scale(1.25);}
+.m3{left:35%;transform:scale(.8);bottom:30%;}
+
+.snow-ground{
+    position:absolute;
+    left:-10%;
+    right:-10%;
     bottom:-5%;
-    height:40%;
-    background:
-        linear-gradient(
-            #fff,
-            #dcecf5
-        );
+    height:38%;
     border-radius:50% 50% 0 0;
+    background:#f7fcff;
+    box-shadow:0 -15px 35px rgba(255,255,255,.3);
 }
 
 .snowflake{
     position:absolute;
-    top:-30px;
-    color:white;
-    font-size:20px;
-    opacity:.9;
-    animation:
-        snowfall linear infinite;
-}
-
-@keyframes snowfall{
-
-    from{
-        transform:
-            translateY(-40px)
-            rotate(0);
-    }
-
-    to{
-        transform:
-            translateY(110vh)
-            rotate(360deg);
-    }
-}
-
-
-/* =====================================================
-   BOY SNOW JOURNEY
-===================================================== */
-
-.snowTravel{
-    animation:
-        snowTravel 3s ease-in-out forwards;
-}
-
-@keyframes snowTravel{
-
-    0%{
-        right:50%;
-        bottom:18vh;
-        transform:scale(.65);
-    }
-
-    50%{
-        right:35%;
-        bottom:14vh;
-        transform:scale(.72);
-    }
-
-    100%{
-        right:12%;
-        bottom:10vh;
-        transform:scale(.8);
-    }
-}
-
-
-/* =====================================================
-   DESERT
-===================================================== */
-
-.desertWorld{
-    background:
-        linear-gradient(
-            #63c6fa 0%,
-            #bcecff 43%,
-            #e7aa59 44%,
-            #c77b32 100%
-        );
-}
-
-.sun{
-    position:absolute;
-    width:110px;
-    height:110px;
+    top:-20px;
+    width:7px;
+    height:7px;
     border-radius:50%;
-    right:12%;
-    top:12%;
-    background:#fff3b0;
-    box-shadow:
-        0 0 40px #ffe59a,
-        0 0 90px #ffd35a;
+    background:white;
+    opacity:.8;
+    animation:snowFall linear infinite;
+}
+
+@keyframes snowFall{
+    to{transform:translateY(110vh) translateX(100px) rotate(360deg);}
+}
+
+.snow-boy{
+    width:190px;
+    left:-230px;
+    bottom:18%;
+    z-index:8;
+}
+
+.snow-scene.active .snow-boy{
+    animation:snowJourney 5s ease-in-out forwards;
+}
+
+@keyframes snowJourney{
+    0%{left:-230px;transform:rotate(-3deg);}
+    45%{left:43%;transform:rotate(3deg);}
+    100%{left:110%;transform:rotate(6deg);}
+}
+
+/* =========================
+   DESERT
+========================= */
+
+.desert-scene{
+    background:
+        radial-gradient(circle at 75% 18%,#fff1b0 0 45px,rgba(255,241,176,.15) 46px,transparent 110px),
+        linear-gradient(#d88755 0%,#f2b86b 48%,#d77d42 100%);
 }
 
 .dune{
     position:absolute;
-    left:-10%;
-    width:120%;
-    height:45%;
     bottom:-15%;
-    border-radius:50% 50% 0 0;
-    background:
-        linear-gradient(
-            #e4a14e,
-            #b9682e
-        );
+    width:80%;
+    height:45%;
+    border-radius:50%;
+    background:#e5a35c;
 }
 
-.dune.two{
-    bottom:5%;
-    background:
-        linear-gradient(
-            #efbb68,
-            #d38335
-        );
-    opacity:.8;
+.dune.one{left:-30%;}
+.dune.two{right:-35%;bottom:-5%;background:#c97743;}
+.dune.three{left:25%;bottom:-25%;background:#d88b4d;}
+
+.cactus{
+    position:absolute;
+    bottom:23%;
+    width:18px;
+    height:120px;
+    border-radius:15px;
+    background:#4e713e;
 }
 
+.cactus:before,
+.cactus:after{
+    content:"";
+    position:absolute;
+    width:50px;
+    height:18px;
+    border-radius:20px;
+    background:#4e713e;
+}
 
-/* =====================================================
-   DESERT JOURNEY
-===================================================== */
+.cactus:before{
+    left:-35px;
+    top:40px;
+}
 
-.desertTravel{
-    animation:
-        desertJourney 3s ease-in-out forwards;
+.cactus:after{
+    right:-35px;
+    top:70px;
+}
+
+.c1{left:12%;}
+.c2{right:17%;height:90px;}
+
+.desert-boy{
+    width:180px;
+    left:-220px;
+    bottom:20%;
+    z-index:8;
+}
+
+.desert-scene.active .desert-boy{
+    animation:desertJourney 5s ease-in-out forwards;
 }
 
 @keyframes desertJourney{
-
-    0%{
-        right:12%;
-        bottom:10vh;
-        transform:scale(.8);
-    }
-
-    50%{
-        right:50%;
-        bottom:22vh;
-        transform:scale(.6);
-    }
-
-    100%{
-        right:82%;
-        bottom:14vh;
-        transform:scale(.48);
-    }
+    0%{left:-220px;}
+    50%{left:42%;transform:translateY(-8px);}
+    100%{left:110%;transform:translateY(0);}
 }
 
+/* =========================
+   EARTH / WORLD
+========================= */
 
-/* =====================================================
-   SPACE / EARTH
-===================================================== */
-
-.spaceWorld{
+.world-scene{
     background:
-        radial-gradient(circle at 20% 25%,white 1px,transparent 2px),
-        radial-gradient(circle at 70% 15%,white 1px,transparent 2px),
-        radial-gradient(circle at 45% 70%,white 1px,transparent 2px),
-        radial-gradient(circle at 85% 65%,white 1px,transparent 2px),
-        radial-gradient(circle at 10% 80%,white 1px,transparent 2px),
-        #02030d;
+        radial-gradient(circle at 50% 50%,#142d48 0%,#07101d 42%,#02040a 72%);
+}
 
-    background-size:
-        170px 170px,
-        230px 230px,
-        200px 200px,
-        250px 250px,
-        190px 190px;
+.stars{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,white 0 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(255,255,255,.8) 0 1px,transparent 1.5px);
+    background-size:83px 91px,137px 113px;
+    opacity:.6;
 }
 
 .earth{
     position:absolute;
-    width:210px;
-    height:210px;
     left:50%;
     top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
+    width:300px;
+    height:300px;
+    transform:translate(-50%,-50%);
     border-radius:50%;
-
     background:
-        radial-gradient(
-            circle at 35% 30%,
-            #7deaff,
-            #2588dc 40%,
-            #07509a 68%,
-            #021c45 100%
-        );
-
+        radial-gradient(circle at 35% 30%,rgba(255,255,255,.6),transparent 8%),
+        radial-gradient(circle at 60% 60%,#328bc4 0 28%,#176496 48%,#0a3150 75%);
     box-shadow:
-        0 0 35px #47cfff,
-        0 0 90px #1974c5;
-
-    z-index:5;
+        inset -35px -25px 70px rgba(0,0,0,.7),
+        0 0 55px rgba(60,170,255,.4);
 }
 
-.earth::before{
+.earth:before{
     content:"";
     position:absolute;
-    width:80px;
-    height:45px;
-    left:25px;
-    top:45px;
+    inset:18px;
     border-radius:50%;
-    background:#52c96d;
-    transform:rotate(-20deg);
-    opacity:.75;
+    background:
+        radial-gradient(ellipse at 35% 30%,#7ba84c 0 8%,transparent 9%),
+        radial-gradient(ellipse at 68% 42%,#6c9c46 0 10%,transparent 11%),
+        radial-gradient(ellipse at 45% 68%,#4e833f 0 9%,transparent 10%);
+    opacity:.85;
 }
 
-.earth::after{
-    content:"";
+.orbit{
     position:absolute;
-    width:95px;
-    height:55px;
-    right:20px;
-    bottom:35px;
-    border-radius:50%;
-    background:#48bd68;
-    transform:rotate(25deg);
-    opacity:.7;
-}
-
-.orbitRing{
-    position:absolute;
-    width:380px;
-    height:220px;
     left:50%;
     top:50%;
-    transform:
-        translate(-50%,-50%)
-        rotate(-15deg);
-    border:
-        2px solid rgba(255,255,255,.5);
+    width:650px;
+    height:330px;
+    border:1px solid rgba(255,255,255,.18);
     border-radius:50%;
-    z-index:8;
+    transform:translate(-50%,-50%) rotate(-10deg);
 }
 
-
-/* =====================================================
-   WORLD ORBIT BOY
-===================================================== */
-
-.worldBoy{
+.orbit-boy{
     position:absolute;
-    height:28vh;
-    max-height:260px;
-    width:auto;
+    width:135px;
     left:50%;
     top:50%;
-    z-index:15;
+    transform:translate(-50%,-50%);
+    z-index:10;
+}
 
-    animation:
-        worldOrbit 6s linear forwards;
+.world-scene.active .orbit-boy{
+    animation:worldOrbit 6s linear forwards;
 }
 
 @keyframes worldOrbit{
-
     0%{
         transform:
-            translate(-190px,0)
-            scale(.45);
+            translate(-50%,-50%)
+            translateX(325px)
+            scale(.65);
     }
-
-    12.5%{
-        transform:
-            translate(-135px,-95px)
-            scale(.42);
-    }
-
     25%{
         transform:
-            translate(0,-125px)
-            scale(.4);
+            translate(-50%,-50%)
+            translate(0,-165px)
+            scale(.5);
     }
-
-    37.5%{
-        transform:
-            translate(140px,-85px)
-            scale(.42);
-    }
-
     50%{
         transform:
-            translate(190px,0)
-            scale(.45);
+            translate(-50%,-50%)
+            translateX(-325px)
+            scale(.65);
     }
-
-    62.5%{
-        transform:
-            translate(135px,90px)
-            scale(.48);
-    }
-
     75%{
         transform:
-            translate(0,125px)
-            scale(.52);
+            translate(-50%,-50%)
+            translate(0,165px)
+            scale(.95);
     }
-
-    87.5%{
-        transform:
-            translate(-140px,85px)
-            scale(.48);
-    }
-
     100%{
         transform:
-            translate(-190px,0)
-            scale(.45);
+            translate(-50%,-50%)
+            translateX(325px)
+            scale(.65);
     }
 }
 
-
-/* =====================================================
+/* =========================
    RETURN TO GIRL
-===================================================== */
+========================= */
 
-.returnBoy{
-    animation:
-        returnJourney 3.5s cubic-bezier(.2,.8,.2,1) forwards;
+.return-scene{
+    background:
+        radial-gradient(circle at 50% 30%,rgba(255,170,205,.15),transparent 25%),
+        linear-gradient(#241923,#0b080e);
 }
 
-@keyframes returnJourney{
+.return-girl{
+    width:285px;
+    left:50%;
+    bottom:8%;
+    transform:translateX(-50%);
+    z-index:5;
+}
 
+.return-boy{
+    width:180px;
+    left:-220px;
+    bottom:15%;
+    z-index:6;
+}
+
+.return-scene.active .return-boy{
+    animation:boyReturn 4s ease-in-out forwards;
+}
+
+@keyframes boyReturn{
     0%{
-        left:50%;
-        top:50%;
-        transform:
-            translate(-190px,0)
-            scale(.45);
+        left:-220px;
+        transform:rotate(-8deg) scale(.8);
     }
-
-    35%{
-        left:70%;
-        top:48%;
-        transform:
-            translate(0,0)
-            scale(.6);
+    60%{
+        left:42%;
+        transform:rotate(4deg) scale(.82);
     }
-
-    70%{
-        left:45%;
-        top:55%;
-        transform:
-            translate(0,0)
-            scale(.75);
-    }
-
     100%{
-        left:20%;
-        top:auto;
-        bottom:5vh;
-        transform:
-            translate(0,0)
-            scale(1);
+        left:calc(50% - 45px);
+        transform:rotate(0) scale(.82);
     }
 }
 
-
-/* =====================================================
+/* =========================
    FINAL HUG
-===================================================== */
+========================= */
 
-.finalGirl{
-    position:absolute;
-    height:58vh;
-    max-height:550px;
-    width:auto;
-    left:8%;
-    bottom:5vh;
-    z-index:30;
+.final-scene{
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,150,195,.22),transparent 30%),
+        linear-gradient(#291b29 0%,#130d15 65%,#08060b 100%);
 }
 
-.finalBoy{
+.moon{
     position:absolute;
-    height:56vh;
-    max-height:530px;
-    width:auto;
-    left:15%;
-    bottom:5vh;
-    z-index:29;
-
-    opacity:0;
-
-    animation:
-        finalBoyAppear 1.5s ease forwards;
+    top:9%;
+    right:12%;
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#fff4dc;
+    box-shadow:0 0 40px rgba(255,244,220,.25);
 }
 
-@keyframes finalBoyAppear{
+.final-girl{
+    width:275px;
+    left:50%;
+    bottom:9%;
+    transform:translateX(-50%);
+    z-index:8;
+}
 
-    from{
+/*
+   Boy is placed slightly in front.
+   Girl remains behind him, creating the
+   back-hug composition using the original PNG.
+*/
+.final-boy{
+    width:220px;
+    left:50%;
+    bottom:11%;
+    transform:translateX(-35%);
+    z-index:10;
+}
+
+.final-scene.active .final-girl{
+    animation:finalGirl 2.2s ease-out forwards;
+}
+
+.final-scene.active .final-boy{
+    animation:finalBoy 2.2s ease-out forwards;
+}
+
+@keyframes finalGirl{
+    0%{
+        transform:translateX(-50%) translateX(130px);
         opacity:0;
-        transform:translateX(80px);
     }
-
-    to{
+    70%{
+        transform:translateX(-50%) translateX(10px);
         opacity:1;
-        transform:translateX(0);
     }
-}
-
-.hugArms{
-    position:absolute;
-    width:160px;
-    height:120px;
-    left:16%;
-    bottom:27%;
-    z-index:40;
-    opacity:0;
-}
-
-.hugArms.show{
-    animation:
-        armsHug 1s ease-out forwards;
-}
-
-@keyframes armsHug{
-
-    from{
-        opacity:0;
-        transform:scale(.5);
-    }
-
-    to{
+    100%{
+        transform:translateX(-50%) translateX(0);
         opacity:1;
-        transform:scale(1);
     }
 }
 
-.kissHeart{
-    position:absolute;
-    left:27%;
-    bottom:47%;
-    font-size:25px;
-    z-index:50;
-    opacity:0;
+@keyframes finalBoy{
+    0%{
+        transform:translateX(-35%) translateY(-15px);
+    }
+    65%{
+        transform:translateX(-35%) translateY(0);
+    }
+    100%{
+        transform:translateX(-35%) translateY(0);
+    }
 }
 
-.kissHeart.show{
-    animation:
-        kissPop 1.3s ease-out forwards;
+/* arms effect for hug */
+.hug-arm{
+    position:absolute;
+    z-index:12;
+    width:120px;
+    height:42px;
+    border-radius:50%;
+    border:15px solid #b779a0;
+    border-top-color:transparent;
+    border-left-color:transparent;
+    opacity:0;
+    pointer-events:none;
+}
+
+.arm-left{
+    left:calc(50% - 115px);
+    bottom:30%;
+    transform:rotate(25deg);
+}
+
+.arm-right{
+    left:calc(50% + 5px);
+    bottom:31%;
+    transform:rotate(150deg);
+}
+
+.final-scene.active .hug-arm{
+    animation:armsAppear 1s 1.6s ease forwards;
+}
+
+@keyframes armsAppear{
+    to{opacity:.9;}
+}
+
+.kiss{
+    position:absolute;
+    z-index:20;
+    left:calc(50% + 54px);
+    bottom:42%;
+    font-family:Arial,sans-serif;
+    font-size:42px;
+    opacity:0;
+    transform:scale(.2) rotate(-12deg);
+}
+
+.final-scene.active .kiss{
+    animation:kissPop 1.1s 2.7s ease-out forwards;
 }
 
 @keyframes kissPop{
-
-    0%{
-        opacity:0;
-        transform:scale(.3);
-    }
-
-    35%{
-        opacity:1;
-        transform:scale(1.2);
-    }
-
-    100%{
-        opacity:0;
-        transform:
-            translateY(-35px)
-            scale(.8);
-    }
+    0%{opacity:0;transform:scale(.2) rotate(-12deg);}
+    55%{opacity:1;transform:scale(1.2) rotate(-12deg);}
+    100%{opacity:1;transform:scale(1) rotate(-12deg);}
 }
 
-
-/* =====================================================
-   FINAL HEARTS
-===================================================== */
-
-.finalHeart{
+.final-heart{
     position:absolute;
-    z-index:60;
-    font-size:28px;
+    left:50%;
+    top:18%;
+    font-size:34px;
     opacity:0;
 }
 
-.finalHeart.show{
-    animation:
-        finalFloat 3s ease-out forwards;
+.final-scene.active .final-heart{
+    animation:heartFloat 2s 3.1s ease-out forwards;
 }
 
-@keyframes finalFloat{
-
-    0%{
-        opacity:0;
-        transform:
-            translateY(20px)
-            scale(.4);
-    }
-
-    30%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:0;
-        transform:
-            translateY(-160px)
-            scale(1.2);
-    }
+@keyframes heartFloat{
+    0%{opacity:0;transform:translateY(30px) scale(.5);}
+    40%{opacity:1;}
+    100%{opacity:0;transform:translateY(-90px) scale(1.3);}
 }
 
+/* =========================
+   CAPTION
+========================= */
 
-/* =====================================================
+.caption{
+    position:absolute;
+    left:50%;
+    top:7%;
+    transform:translateX(-50%);
+    color:white;
+    text-align:center;
+    font-size:clamp(18px,4vw,30px);
+    letter-spacing:1px;
+    text-shadow:0 3px 15px rgba(0,0,0,.8);
+    z-index:50;
+    width:90%;
+    opacity:0;
+    transition:opacity .7s ease;
+}
+
+.scene.active .caption{
+    opacity:1;
+}
+
+/* =========================
+   REPLAY
+========================= */
+
+#replay{
+    position:absolute;
+    z-index:100;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%);
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(0,0,0,.45);
+    color:white;
+    padding:10px 24px;
+    border-radius:30px;
+    font-size:15px;
+    cursor:pointer;
+    backdrop-filter:blur(8px);
+    opacity:0;
+    transition:.4s;
+}
+
+#replay.show{
+    opacity:1;
+}
+
+#replay:hover{
+    background:rgba(255,70,110,.3);
+}
+
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media(max-width:600px){
 
+    .character,
     .girl{
-        height:48vh;
-        left:3%;
-        bottom:7vh;
+        width:230px;
     }
 
     .boy{
-        height:46vh;
-        right:3%;
-        bottom:7vh;
+        width:230px;
     }
 
-    .handHeart{
-        left:35%;
-        bottom:34%;
-        font-size:20px;
+    .girl-start,
+    .return-girl,
+    .final-girl{
+        width:245px;
     }
 
-    .roomWindow{
-        width:28vw;
-        height:25vh;
+    .impact-boy{
+        width:245px;
     }
 
-    .door{
-        width:48vw;
-        height:62vh;
+    .door-boy{
+        width:185px;
     }
 
     .earth{
-        width:145px;
-        height:145px;
+        width:230px;
+        height:230px;
     }
 
-    .orbitRing{
-        width:270px;
-        height:165px;
+    .orbit{
+        width:500px;
+        height:260px;
     }
 
-    .worldBoy{
-        height:22vh;
+    .orbit-boy{
+        width:110px;
     }
 
-    .finalGirl{
-        height:48vh;
-        left:3%;
+    .caption{
+        top:4%;
+        font-size:19px;
     }
 
-    .finalBoy{
-        height:46vh;
-        left:10%;
-    }
-
-    .hugArms{
-        left:12%;
-        bottom:26%;
-    }
-
-    .kissHeart{
-        left:25%;
-        bottom:44%;
+    .door-frame{
+        width:205px;
+        height:380px;
     }
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="scene">
+<div id="story">
+
+    <!-- =========================
+         SCENE 1 — GIRL + HEART
+    ========================== -->
+
+    <section class="scene room active" id="scene1">
+
+        <div class="window"></div>
+
+        <div class="lamp">
+            <div class="shade"></div>
+            <div class="stand"></div>
+            <div class="base"></div>
+        </div>
+
+        <div class="caption">
+            Sometimes... love begins with a tiny little heart ❤️
+        </div>
+
+        <img
+            class="character girl girl-start"
+            src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Girl.png"
+            alt="Girl"
+        >
+
+        <div class="throw-heart" id="throwHeart"></div>
+    </section>
 
 
-<!-- =====================================================
-     SCENE 1 — GIRL ROOM
-===================================================== -->
+    <!-- =========================
+         SCENE 2 — HEART IMPACT
+    ========================== -->
 
-<div class="sceneLayer room active" id="room">
+    <section class="scene impact-bg" id="scene2">
 
-    <div class="roomLight"></div>
+        <div class="caption">
+            And then... BOOM! ❤️
+        </div>
 
-    <div class="roomWindow"></div>
+        <img
+            class="character impact-boy"
+            src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png"
+            alt="Boy"
+        >
 
-    <img
-        src="Girl.png"
-        class="girl"
-        id="girl"
-    >
+        <div class="impact-heart"></div>
+        <div class="impact-ring"></div>
 
-    <div
-        class="handHeart"
-        id="handHeart">
-        ❤️
+    </section>
+
+
+    <!-- =========================
+         SCENE 3 — DOOR
+    ========================== -->
+
+    <section class="scene door-scene" id="scene3">
+
+        <div class="caption">
+            One little heart changed his whole journey...
+        </div>
+
+        <div class="door-frame">
+            <div class="door">
+                <div class="door-knob"></div>
+                <div class="snow-light"></div>
+            </div>
+        </div>
+
+        <img
+            class="character door-boy"
+            src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png"
+            alt="Boy"
+        >
+
+    </section>
+
+
+    <!-- =======================
+     SCENE 4 – SNOW
+======================== -->
+
+<section class="scene snow-scene" id="scene4">
+
+    <div class="caption">
+        Through the snow... ❄️
     </div>
 
-</div>
+    <div class="mountain m1"></div>
+    <div class="mountain m2"></div>
+    <div class="mountain m3"></div>
+    <div class="snow-ground"></div>
+
+    <div class="snowflake" style="left:5%;animation-duration:5s;"></div>
+    <div class="snowflake" style="left:14%;animation-duration:7s;"></div>
+    <div class="snowflake" style="left:25%;animation-duration:6s;"></div>
+    <div class="snowflake" style="left:38%;animation-duration:8s;"></div>
+    <div class="snowflake" style="left:52%;animation-duration:5.5s;"></div>
+    <div class="snowflake" style="left:65%;animation-duration:7.5s;"></div>
+    <div class="snowflake" style="left:77%;animation-duration:6.5s;"></div>
+    <div class="snowflake" style="left:90%;animation-duration:8.5s;"></div>
+
+    <img class="character snow-boy" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png" alt="Boy" />
+
+</section>
 
 
-<!-- =====================================================
-     SCENE 2 — DOOR
-===================================================== -->
+<!-- =======================
+     SCENE 5 – DESERT
+======================== -->
 
-<div class="sceneLayer doorWorld" id="doorWorld">
+<section class="scene desert-scene" id="scene5">
 
-    <div
-        class="doorLight"
-        id="doorLight">
+    <div class="caption">
+        Across the desert... ☀️
     </div>
 
-    <div
-        class="door"
-        id="door">
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     SCENE 3 — SNOW
-===================================================== -->
-
-<div
-    class="sceneLayer snowWorld"
-    id="snowWorld">
-
-    <div class="snowGround"></div>
-
-    <div class="snowflake" style="left:8%;animation-duration:5s;">❄</div>
-    <div class="snowflake" style="left:18%;animation-duration:7s;animation-delay:1s;">❄</div>
-    <div class="snowflake" style="left:30%;animation-duration:6s;animation-delay:2s;">❄</div>
-    <div class="snowflake" style="left:45%;animation-duration:8s;">❄</div>
-    <div class="snowflake" style="left:60%;animation-duration:5.5s;animation-delay:1.5s;">❄</div>
-    <div class="snowflake" style="left:75%;animation-duration:7s;">❄</div>
-    <div class="snowflake" style="left:90%;animation-duration:6s;animation-delay:2s;">❄</div>
-
-</div>
-
-
-<!-- =====================================================
-     SCENE 4 — DESERT
-===================================================== -->
-
-<div
-    class="sceneLayer desertWorld"
-    id="desertWorld">
-
-    <div class="sun"></div>
-
-    <div class="dune"></div>
+    <div class="dune one"></div>
     <div class="dune two"></div>
+    <div class="dune three"></div>
 
-</div>
+    <div class="cactus c1"></div>
+    <div class="cactus c2"></div>
+
+    <img class="character desert-boy" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png" alt="Boy" />
+
+</section>
 
 
-<!-- =====================================================
-     SCENE 5 — SPACE / EARTH
-===================================================== -->
+<!-- =======================
+     SCENE 6 – EARTH
+======================== -->
 
-<div
-    class="sceneLayer spaceWorld"
-    id="spaceWorld">
+<section class="scene world-scene" id="scene6">
+
+    <div class="stars"></div>
+
+    <div class="caption">
+        Around the whole world... 🌍
+    </div>
 
     <div class="earth"></div>
+    <div class="orbit"></div>
 
-    <div class="orbitRing"></div>
+    <img class="orbit-boy" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png" alt="Boy" />
 
-</div>
-
-
-<!-- =====================================================
-     BOY
-===================================================== -->
-
-<img
-    src="Boy.png"
-    class="boy"
-    id="boy"
->
+</section>
 
 
-<!-- =====================================================
-     IMPACT
-===================================================== -->
+<!-- =======================
+     SCENE 7 – RETURN
+======================== -->
 
-<div
-    class="impactFlash"
-    id="impactFlash">
-</div>
+<section class="scene return-scene" id="scene7">
 
-
-<!-- =====================================================
-     FINAL HUG SCENE
-===================================================== -->
-
-<div
-    class="sceneLayer"
-    id="finalScene"
-    style="
-        background:
-        radial-gradient(
-            circle at 50% 25%,
-            #ffeaf3,
-            #f5bfd2 40%,
-            #9b5872 100%
-        );
-    ">
-
-    <img
-        src="Girl.png"
-        class="finalGirl"
-        id="finalGirl"
-    >
-
-    <img
-        src="Boy.png"
-        class="finalBoy"
-        id="finalBoy"
-    >
-
-    <!-- arms wrapping from behind -->
-    <div
-        class="hugArms"
-        id="hugArms">
-        🫂
+    <div class="caption">
+        No matter how far he went...
     </div>
 
-    <!-- cheek kiss -->
-    <div
-        class="kissHeart"
-        id="kissHeart">
-        💋
+    <img class="character return-girl" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Girl.png" alt="Girl" />
+
+    <img class="character return-boy" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png" alt="Boy" />
+
+</section>
+
+
+<!-- =======================
+     SCENE 8 – FINAL HUG
+======================== -->
+
+<section class="scene final-scene" id="scene8">
+
+    <div class="moon"></div>
+
+    <div class="caption">
+        ...his heart always knew where to return. ❤️
     </div>
 
-    <div
-        class="finalHeart"
-        id="fh1"
-        style="left:18%;bottom:30%;">
-        ❤️
-    </div>
+    <img class="character final-girl" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Girl.png" alt="Girl" />
 
-    <div
-        class="finalHeart"
-        id="fh2"
-        style="left:35%;bottom:45%;">
-        💗
-    </div>
+    <img class="character final-boy" src="https://raw.githubusercontent.com/adira54-creator/love-heart-animation/main/Boy.png" alt="Boy" />
 
-    <div
-        class="finalHeart"
-        id="fh3"
-        style="left:55%;bottom:35%;">
-        💕
-    </div>
+    <div class="hug-arm arm-left"></div>
+    <div class="hug-arm arm-right"></div>
 
-    <div
-        class="finalHeart"
-        id="fh4"
-        style="left:70%;bottom:48%;">
-        💖
-    </div>
+    <div class="kiss">💋</div>
 
-</div>
+    <div class="final-heart">❤️</div>
 
+</section>
+
+<button id="replay">Replay ❤️</button>
 
 </div>
 
 
 <script>
 
-/* ======================
+/*
+----------------------------------------
+==========
+   LOVE STORY CONTROLLER
+========================================
+----------------------------------------
+*/
+
+const scenes = [
+    document.getElementById("scene1"),
+    document.getElementById("scene2"),
+    document.getElementById("scene3"),
+    document.getElementById("scene4"),
+    document.getElementById("scene5"),
+    document.getElementById("scene6"),
+    document.getElementById("scene7"),
+    document.getElementById("scene8")
+];
+
+const throwHeart = document.getElementById("throwHeart");
+const replay = document.getElementById("replay");
+
+let currentScene = 0;
+let timer = null;
+
+
+/*
+----------------------------------------
+---------
+   CHANGE SCENE
+----------------------------------------
+---------
+*/
+
+function showScene(number){
+
+    scenes.forEach((scene, index)=>{
+
+        if(index === number){
+            scene.classList.add("active");
+        }else{
+            scene.classList.remove("active");
+        }
+
+    });
+
+    currentScene = number;
+
+}
+
+
+/*
+----------------------------------------
+---------
+   HEART THROW ANIMATION
+----------------------------------------
+---------
+*/
+
+function throwTheHeart(){
+
+    throwHeart.style.opacity = "1";
+
+    throwHeart.animate(
+        [
+            {
+                left:"calc(50% + 91px)",
+                bottom:"36%",
+                transform:"rotate(-45deg) scale(.35)"
+            },
+            {
+                left:"calc(50% + 145px)",
+                bottom:"39%",
+                transform:"rotate(-45deg) scale(.65)"
+            },
+            {
+                left:"calc(50% + 205px)",
+                bottom:"41%",
+                transform:"rotate(-45deg) scale(1.15)"
+            }
+        ],
+        {
+            duration: 1800,
+            easing:"cubic-bezier(.2,.7,.2,1)",
+            fill:"forwards"
+        }
+    );
+
+}
+
+
+/*
+----------------------------------------
+---------
+   RESET HEART
+----------------------------------------
+---------
+*/
+
+function resetHeart(){
+
+    throwHeart.style.opacity = "0";
+
+    throwHeart.getAnimations().forEach(animation => {
+        animation.cancel();
+    });
+
+    throwHeart.style.left = "calc(50% + 91px)";
+    throwHeart.style.bottom = "36%";
+    throwHeart.style.transform = "rotate(-45deg) scale(.35)";
+
+}
+
+
+/*
+----------------------------------------
+---------
+   START STORY
+----------------------------------------
+---------
+*/
+
+function startStory(){
+
+    clearTimeout(timer);
+
+    replay.classList.remove("show");
+
+    resetHeart();
+
+    /* Reset special classes */
+
+    scenes.forEach(scene=>{
+        scene.classList.remove("open");
+    });
+
+    showScene(0);
+
+    /* Girl holds heart for a moment */
+
+    timer = setTimeout(()=>{
+
+        throwTheHeart();
+
+    }, 1800);
+
+    /* Heart travels */
+
+        timer = setTimeout(()=>{
+
+        showScene(1);
+
+    }, 3900);
+
+
+    /* Impact scene */
+
+    timer = setTimeout(()=>{
+
+        showScene(2);
+
+        const doorScene = document.getElementById("scene3");
+
+        timer = setTimeout(()=>{
+
+            showScene(3);
+
+        }, 3000);
+
+    }, 5900);
+
+
+    /* Snow scene */
+
+    timer = setTimeout(()=>{
+
+        showScene(3);
+
+    }, 8900);
+
+
+    /* Desert */
+
+    timer = setTimeout(()=>{
+
+        showScene(4);
+
+    }, 14100);
+
+
+    /* Earth */
+
+    timer = setTimeout(()=>{
+
+        showScene(5);
+
+    }, 19300);
+
+
+    /* Return */
+
+    timer = setTimeout(()=>{
+
+        showScene(6);
+
+    }, 26300);
+
+
+    /* Final hug */
+
+    timer = setTimeout(()=>{
+
+        showScene(7);
+
+    }, 31300);
+
+
+    /* Replay */
+
+    timer = setTimeout(()=>{
+
+        replay.classList.add("show");
+
+    }, 36500);
+
+}
+
+
+/*
+----------------------------------------
+---------
+   DOOR OPEN WHEN ENTERING DOOR SCENE
+----------------------------------------
+---------
+*/
+
+const originalShowScene = showScene;
+
+showScene = function(number){
+
+    originalShowScene(number);
+
+    if(number === 2){
+
+        const doorScene = document.getElementById("scene3");
+
+        setTimeout(()=>{
+
+            doorScene.classList.add("open");
+
+        }, 500);
+
+    }
+
+};
+
+
+/*
+----------------------------------------
+---------
+   REPLAY
+----------------------------------------
+---------
+*/
+
+replay.addEventListener("click", ()=>{
+
+    startStory();
+
+});
+
+
+/*
+----------------------------------------
+---------
+   START AUTOMATICALLY
+----------------------------------------
+---------
+*/
+
+window.addEventListener("load", ()=>{
+
+    setTimeout(()=>{
+
+        startStory();
+
+    }, 500);
+
+});
+
+</script>
+
+</body>
+</html>
