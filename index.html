@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Journey ❤️</title>
 
 <style>
-
-/* =====================================================
-   BASIC
-===================================================== */
 
 *{
     margin:0;
@@ -22,8 +13,7 @@
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -38,163 +28,99 @@ body{
     overflow:hidden;
 }
 
+/* BACKGROUNDS */
 
-/* =====================================================
-   ALL BACKGROUNDS
-===================================================== */
-
-.background{
+.bg{
     position:absolute;
     inset:0;
     opacity:0;
-    transition:opacity 1.2s ease;
-    pointer-events:none;
+    transition:opacity 1s ease;
 }
-
-
-/* GIRL ROOM */
 
 .room{
     opacity:1;
-
     background:
-        radial-gradient(
-            circle at 50% 30%,
-            #ffe8f1 0%,
-            #f6b3cc 38%,
-            #b76c8b 75%,
-            #63364e 100%
-        );
+    radial-gradient(circle at 50% 25%,
+    #ffe7f0 0%,
+    #f7b0c9 40%,
+    #9b5675 100%);
 }
 
-.room::before{
+.room:after{
     content:"";
-
     position:absolute;
-
-    width:75%;
-    height:55%;
-
-    left:12.5%;
-    top:12%;
-
-    border-radius:18px;
-
+    left:8%;
+    right:8%;
+    bottom:0;
+    height:34%;
     background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.45),
-            rgba(255,190,220,.15)
-        );
-
-    box-shadow:
-        0 20px 50px rgba(80,20,50,.25);
-
-    opacity:.7;
+    linear-gradient(#d99bb2,#a86682);
+    border-radius:50% 50% 0 0;
+    opacity:.45;
 }
-
-
-/* SNOW */
 
 .snow{
     background:
-        linear-gradient(
-            #9fd2ed 0%,
-            #dff5ff 48%,
-            #ffffff 100%
-        );
+    linear-gradient(
+        #9ccde8 0%,
+        #dff5ff 55%,
+        #ffffff 100%
+    );
 }
-
-
-/* DESERT */
 
 .desert{
     background:
-        linear-gradient(
-            #62c5ff 0%,
-            #bdeaff 44%,
-            #e6a45a 45%,
-            #c77831 100%
-        );
+    linear-gradient(
+        #59c5ff 0%,
+        #bceaff 44%,
+        #e5a45a 45%,
+        #c47730 100%
+    );
 }
-
-
-/* SPACE */
 
 .space{
     background:
-        radial-gradient(circle at 12% 20%,white 0 1px,transparent 2px),
-        radial-gradient(circle at 30% 70%,white 0 1px,transparent 2px),
-        radial-gradient(circle at 48% 15%,white 0 1px,transparent 2px),
-        radial-gradient(circle at 66% 80%,white 0 1px,transparent 2px),
-        radial-gradient(circle at 82% 30%,white 0 1px,transparent 2px),
-        radial-gradient(circle at 91% 70%,white 0 1px,transparent 2px),
-        #02030d;
-
-    background-size:
-        180px 180px,
-        230px 230px,
-        200px 200px,
-        260px 260px,
-        190px 190px,
-        220px 220px,
-        auto;
+    radial-gradient(circle at 10% 20%,white 1px,transparent 2px),
+    radial-gradient(circle at 25% 70%,white 1px,transparent 2px),
+    radial-gradient(circle at 45% 15%,white 1px,transparent 2px),
+    radial-gradient(circle at 62% 75%,white 1px,transparent 2px),
+    radial-gradient(circle at 78% 25%,white 1px,transparent 2px),
+    radial-gradient(circle at 90% 65%,white 1px,transparent 2px),
+    #02030d;
 }
 
-
-/* =====================================================
-   ROOM DOOR
-===================================================== */
+/* DOOR */
 
 .door{
     position:absolute;
-
     width:115px;
     height:235px;
-
-    right:7%;
-    bottom:7%;
-
-    border-radius:8px 8px 0 0;
-
+    right:6%;
+    bottom:6%;
     background:
-        linear-gradient(
-            90deg,
-            #55301f,
-            #8b5638,
-            #4b291b
-        );
-
-    border:5px solid #3b2117;
-
-    box-shadow:
-        inset 8px 0 15px rgba(0,0,0,.3),
-        0 15px 35px rgba(0,0,0,.3);
-
+    linear-gradient(
+        90deg,
+        #422316,
+        #8b5436,
+        #4a2819
+    );
+    border:5px solid #32190f;
+    border-radius:8px 8px 0 0;
+    box-shadow:0 15px 35px rgba(0,0,0,.4);
     transform-origin:left center;
-
-    transform:perspective(500px)
-             rotateY(0deg);
-
     opacity:0;
-
-    z-index:2;
+    z-index:4;
 }
 
-.door::after{
+.door:after{
     content:"";
-
     position:absolute;
-
-    width:12px;
-    height:12px;
-
+    width:11px;
+    height:11px;
     border-radius:50%;
-
-    right:13px;
+    background:#f5d27b;
+    right:12px;
     top:50%;
-
-    background:#f5d58a;
 }
 
 .door.open{
@@ -202,437 +128,311 @@ body{
 }
 
 @keyframes doorOpen{
-
     0%{
         opacity:0;
-        transform:perspective(500px)
-                   rotateY(0deg);
+        transform:perspective(500px) rotateY(0);
     }
-
     20%{
         opacity:1;
     }
-
     100%{
         opacity:1;
-        transform:perspective(500px)
-                   rotateY(-68deg);
+        transform:perspective(500px) rotateY(-70deg);
     }
 }
 
-
-/* =====================================================
-   CHARACTERS
-===================================================== */
+/* CHARACTERS */
 
 .person{
     position:absolute;
-
     width:auto;
-
     height:54vh;
-
     max-height:560px;
-
     object-fit:contain;
-
     z-index:10;
-
-    user-select:none;
-
     pointer-events:none;
 }
 
-
-/* GIRL */
-
 .girl{
-    left:7%;
-    bottom:8vh;
-
-    transform-origin:
-        50% 85%;
+    left:5%;
+    bottom:7vh;
+    transform-origin:50% 85%;
 }
-
-
-/* BOY */
 
 .boy{
-    right:7%;
-    bottom:8vh;
-
-    transform-origin:
-        50% 85%;
+    right:5%;
+    bottom:7vh;
+    transform-origin:50% 85%;
 }
+      /* GIRL THROWING */
 
-
-/* =====================================================
-   GIRL THROWING MOTION
-===================================================== */
-
-.girl.throwing{
-
+.girl.throw{
     animation:
-        girlThrow
-        1.15s
-        cubic-bezier(.25,.7,.25,1)
-        forwards;
+    girlThrow
+    1.1s
+    cubic-bezier(.25,.8,.25,1)
+    forwards;
 }
 
 @keyframes girlThrow{
 
     0%{
-        transform:
-            translateX(0)
-            rotate(0deg);
+        transform:translateX(0) rotate(0);
     }
 
     25%{
-        transform:
-            translateX(7px)
-            rotate(-3deg);
+        transform:translateX(7px) rotate(-3deg);
     }
 
     50%{
-        transform:
-            translateX(16px)
-            rotate(4deg);
+        transform:translateX(17px) rotate(5deg);
     }
 
     75%{
-        transform:
-            translateX(7px)
-            rotate(-2deg);
+        transform:translateX(7px) rotate(-2deg);
     }
 
     100%{
-        transform:
-            translateX(0)
-            rotate(0deg);
+        transform:translateX(0) rotate(0);
     }
 }
 
+/* HEART */
 
-/* =====================================================
-   SMALL HEART IN GIRL'S HAND
-===================================================== */
-
-.throwHeart{
-
+.heart{
     position:absolute;
-
-    left:21%;
-    bottom:38%;
-
-    font-size:25px;
-
-    z-index:20;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,70,130,.8)
-        );
-
-    transform-origin:center;
+    left:22%;
+    bottom:39%;
+    font-size:24px;
+    z-index:30;
+    filter:drop-shadow(0 0 10px #ff4f91);
 }
 
-
-/* HEART THROW */
-
-.throwHeart.fly{
-
+.heart.fly{
     animation:
-        heartTravel
-        2.7s
-        cubic-bezier(.25,.7,.2,1)
-        forwards;
+    heartFly
+    2.7s
+    cubic-bezier(.2,.75,.2,1)
+    forwards;
 }
 
-
-@keyframes heartTravel{
+@keyframes heartFly{
 
     0%{
-
-        left:21%;
-        bottom:38%;
-
-        transform:
-            scale(.45)
-            rotate(0deg);
-
-        opacity:1;
+        left:22%;
+        bottom:39%;
+        transform:scale(.45) rotate(0);
     }
 
     15%{
-
-        left:27%;
-        bottom:43%;
-
-        transform:
-            scale(.65)
-            rotate(-8deg);
-
-        opacity:1;
-    }
-
-    40%{
-
-        left:43%;
-        bottom:51%;
-
-        transform:
-            scale(1.05)
-            rotate(12deg);
-    }
-
-    65%{
-
-        left:60%;
-        bottom:47%;
-
-        transform:
-            scale(1.35)
-            rotate(-10deg);
-    }
-
-    88%{
-
-        left:73%;
-        bottom:37%;
-
-        transform:
-            scale(1.55)
-            rotate(8deg);
-    }
-
-    100%{
-
-        left:82%;
-        bottom:30%;
-
-        transform:
-            scale(1.8)
-            rotate(0deg);
-
-        opacity:1;
-    }
-}
-
-
-/* =====================================================
-   IMPACT
-===================================================== */
-
-.boy.hit{
-
-    animation:
-        boyImpact
-        .9s
-        cubic-bezier(.2,.8,.2,1)
-        forwards;
-}
-
-@keyframes boyImpact{
-
-    0%{
-        transform:
-            translate(0,0)
-            rotate(0deg);
-    }
-
-    18%{
-        transform:
-            translate(30px,-18px)
-            rotate(8deg);
+        left:28%;
+        bottom:44%;
+        transform:scale(.65) rotate(-8deg);
     }
 
     38%{
-        transform:
-            translate(-22px,-38px)
-            rotate(-9deg);
+        left:43%;
+        bottom:51%;
+        transform:scale(1) rotate(12deg);
     }
 
-    60%{
-        transform:
-            translate(18px,-12px)
-            rotate(6deg);
+    62%{
+        left:59%;
+        bottom:48%;
+        transform:scale(1.35) rotate(-10deg);
     }
 
-    80%{
-        transform:
-            translate(-8px,0)
-            rotate(-3deg);
+    85%{
+        left:73%;
+        bottom:39%;
+        transform:scale(1.65) rotate(8deg);
     }
 
     100%{
-        transform:
-            translate(0,0)
-            rotate(0deg);
+        left:82%;
+        bottom:31%;
+        transform:scale(1.8) rotate(0);
     }
 }
 
-
-/* IMPACT FLASH */
+/* IMPACT */
 
 .impact{
-
     position:absolute;
-
-    width:40px;
-    height:40px;
-
+    right:15%;
+    bottom:31%;
+    width:70px;
+    height:70px;
     border-radius:50%;
-
-    right:17%;
-    bottom:34%;
-
-    z-index:25;
-
-    opacity:0;
-
     background:
-        radial-gradient(
-            circle,
-            #fff 0%,
-            #ff8bb8 35%,
-            transparent 70%
-        );
+    radial-gradient(
+        circle,
+        #fff 0%,
+        #ff82b0 30%,
+        transparent 70%
+    );
+    z-index:25;
+    opacity:0;
 }
 
 .impact.show{
-
-    animation:
-        impactFlash
-        .65s
-        ease-out
-        forwards;
+    animation:impact .7s ease-out forwards;
 }
 
-@keyframes impactFlash{
-
+@keyframes impact{
     0%{
         opacity:0;
-        transform:scale(.3);
+        transform:scale(.2);
     }
 
-    25%{
+    30%{
         opacity:1;
-        transform:scale(2.2);
+        transform:scale(1.8);
     }
 
     100%{
         opacity:0;
-        transform:scale(4);
+        transform:scale(3.5);
     }
 }
 
+/* BOY HIT */
 
-/* =====================================================
-   BOY HOLDING HEART
-===================================================== */
+.boy.hit{
+    animation:
+    hit
+    .9s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
 
-.heldHeart{
+@keyframes hit{
 
+    0%{
+        transform:translate(0,0) rotate(0);
+    }
+
+    20%{
+        transform:translate(35px,-22px) rotate(9deg);
+    }
+
+    40%{
+        transform:translate(-25px,-42px) rotate(-9deg);
+    }
+
+    60%{
+        transform:translate(20px,-15px) rotate(6deg);
+    }
+
+    80%{
+        transform:translate(-8px,0) rotate(-3deg);
+    }
+
+    100%{
+        transform:translate(0,0) rotate(0);
+    }
+}
+
+/* HEART IN BOY'S HAND */
+
+.handHeart{
     position:absolute;
-
-    z-index:16;
-
-    font-size:52px;
-
+    font-size:43px;
+    z-index:18;
     opacity:0;
-
-    filter:
-        drop-shadow(
-            0 0 14px
-            rgba(255,50,100,.9)
-        );
-
+    filter:drop-shadow(0 0 12px #ff4f91);
     pointer-events:none;
 }
 
+.handHeart.show{
+    opacity:1;
+}
+      /* SNOW */
 
-/* SHOW HEART IN BOY'S HANDS */
+.snowflakes{
+    position:absolute;
+    inset:0;
+    z-index:3;
+    opacity:0;
+    pointer-events:none;
+}
 
-.heldHeart.show{
+.snowflakes.show{
     opacity:1;
 }
 
-
-/* SNOW / DESERT HEART POSITION */
-
-.heldHeart.travelHeart{
-
-    left:70%;
-    top:52%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(.9);
+.flake{
+    position:absolute;
+    top:-30px;
+    color:#fff;
+    font-size:17px;
+    opacity:.85;
+    animation:snowfall linear infinite;
 }
 
+@keyframes snowfall{
+    from{
+        transform:translateY(-30px) translateX(0) rotate(0);
+    }
 
-/* =====================================================
-   BOY TRAVELING
-===================================================== */
+    to{
+        transform:translateY(110vh) translateX(80px) rotate(360deg);
+    }
+}
 
-.boy.snowMove{
+/* BOY SNOW TRAVEL */
 
+.boy.snowTravel{
     animation:
-        snowTravel
-        3.2s
-        ease-in-out
-        forwards;
+    snowTravel
+    3s
+    ease-in-out
+    forwards;
 }
 
 @keyframes snowTravel{
 
     0%{
-        right:7%;
-        bottom:8vh;
+        right:5%;
+        bottom:7vh;
         transform:scale(1);
     }
 
-    40%{
-        right:30%;
-        bottom:10vh;
-        transform:scale(.88);
+    30%{
+        right:25%;
+        bottom:9vh;
+        transform:scale(.9);
     }
 
-    75%{
-        right:55%;
-        bottom:9vh;
+    65%{
+        right:50%;
+        bottom:8vh;
         transform:scale(.82);
     }
 
     100%{
         right:72%;
-        bottom:8vh;
-        transform:scale(.78);
+        bottom:7vh;
+        transform:scale(.76);
     }
 }
 
+/* DESERT */
 
-/* =====================================================
-   DESERT TRAVEL
-===================================================== */
-
-.boy.desertMove{
-
+.boy.desertTravel{
     animation:
-        desertTravel
-        3.2s
-        ease-in-out
-        forwards;
+    desertTravel
+    3s
+    ease-in-out
+    forwards;
 }
 
 @keyframes desertTravel{
 
     0%{
-        left:auto;
         right:72%;
-        bottom:8vh;
-        transform:scale(.78);
+        bottom:7vh;
+        transform:scale(.76);
     }
 
     30%{
@@ -641,251 +441,209 @@ body{
         transform:scale(.72);
     }
 
-    60%{
-        right:28%;
-        bottom:11vh;
+    65%{
+        right:27%;
+        bottom:10vh;
         transform:scale(.68);
     }
 
     100%{
-        right:8%;
-        bottom:8vh;
+        right:6%;
+        bottom:7vh;
         transform:scale(.64);
     }
 }
 
-
-/* =====================================================
-   EARTH
-===================================================== */
+/* EARTH */
 
 .earth{
-
     position:absolute;
-
     width:220px;
     height:220px;
-
     left:50%;
     top:50%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(.2);
-
-    opacity:0;
-
+    transform:translate(-50%,-50%) scale(.2);
     border-radius:50%;
-
+    opacity:0;
     z-index:5;
 
     background:
-
-        radial-gradient(
-            circle at 32% 28%,
-            rgba(255,255,255,.7) 0 2%,
-            transparent 3%
-        ),
-
-        radial-gradient(
-            ellipse at 35% 40%,
-            #4da84d 0 9%,
-            transparent 10%
-        ),
-
-        radial-gradient(
-            ellipse at 62% 30%,
-            #58b957 0 8%,
-            transparent 9%
-        ),
-
-        radial-gradient(
-            ellipse at 63% 66%,
-            #4b9f48 0 12%,
-            transparent 13%
-        ),
-
-        radial-gradient(
-            ellipse at 30% 72%,
-            #63b957 0 7%,
-            transparent 8%
-        ),
-
-        radial-gradient(
-            circle at 35% 30%,
-            #74d9ff 0%,
-            #2588d4 48%,
-            #07508e 78%,
-            #021b35 100%
-        );
+    radial-gradient(
+        ellipse at 30% 35%,
+        #54ad4e 0 9%,
+        transparent 10%
+    ),
+    radial-gradient(
+        ellipse at 65% 30%,
+        #63b85b 0 8%,
+        transparent 9%
+    ),
+    radial-gradient(
+        ellipse at 62% 67%,
+        #4da348 0 13%,
+        transparent 14%
+    ),
+    radial-gradient(
+        ellipse at 30% 72%,
+        #61b552 0 7%,
+        transparent 8%
+    ),
+    radial-gradient(
+        circle at 35% 30%,
+        #75dcff,
+        #248bd7 48%,
+        #07518e 78%,
+        #021c36
+    );
 
     box-shadow:
-        0 0 30px #53c9ff,
-        0 0 75px rgba(50,170,255,.7),
-        inset -25px -15px 35px rgba(0,0,0,.45);
+    0 0 35px #53caff,
+    0 0 80px rgba(60,180,255,.65),
+    inset -25px -15px 35px rgba(0,0,0,.45);
 }
 
 .earth.show{
-
-    animation:
-        earthAppear
-        1.2s
-        ease-out
-        forwards;
+    animation:earthShow 1.2s ease-out forwards;
 }
 
-@keyframes earthAppear{
+@keyframes earthShow{
 
     from{
         opacity:0;
-
-        transform:
-            translate(-50%,-50%)
-            scale(.2);
+        transform:translate(-50%,-50%) scale(.2);
     }
 
     to{
         opacity:1;
-
-        transform:
-            translate(-50%,-50%)
-            scale(1);
+        transform:translate(-50%,-50%) scale(1);
     }
 }
 
+/* ORBIT */
 
-/* =====================================================
-   ORBIT
-===================================================== */
-
-.orbitSystem{
-
+.orbit{
     position:absolute;
-
-    width:520px;
-    height:520px;
-
+    width:500px;
+    height:360px;
     left:50%;
     top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
+    transform:translate(-50%,-50%) rotate(-12deg);
+    border:2px solid rgba(255,255,255,.4);
+    border-radius:50%;
     z-index:12;
-
     opacity:0;
 }
 
-.orbitSystem.show{
-
+.orbit.show{
     opacity:1;
-
-    animation:
-        orbitSpin
-        7s
-        linear
-        infinite;
+    animation:orbitRotate 6s linear infinite;
 }
 
-@keyframes orbitSpin{
-
+@keyframes orbitRotate{
     from{
         transform:
-            translate(-50%,-50%)
-            rotate(0deg);
-    }
-
-    to{
-        transform:
-            translate(-50%,-50%)
-            rotate(360deg);
-    }
-}
-
-
-/* ORBIT PATH */
-
-.orbitPath{
-
-    position:absolute;
-
-    width:440px;
-    height:300px;
-
-    left:50%;
-    top:50%;
-
-    transform:
         translate(-50%,-50%)
         rotate(-12deg);
-
-    border:
-        2px solid
-        rgba(255,255,255,.38);
-
-    border-radius:50%;
-
-    box-shadow:
-        0 0 15px
-        rgba(255,255,255,.12);
-}
-
-
-/* BOY INSIDE ORBIT */
-
-.orbitBoy{
-
-    position:absolute;
-
-    width:auto;
-    height:190px;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    object-fit:contain;
-
-    z-index:20;
-
-    /* keeps boy upright while orbit system rotates */
-
-    animation:
-        keepBoyUpright
-        7s
-        linear
-        infinite;
-}
-
-@keyframes keepBoyUpright{
-
-    from{
-        transform:
-            translate(-50%,-50%)
-            rotate(0deg);
     }
 
     to{
         transform:
-            translate(-50%,-50%)
-            rotate(-360deg);
+        translate(-50%,-50%)
+        rotate(348deg);
     }
 }
 
+/* ORBIT BOY */
 
-/* =====================================================
-   RETURN
-===================================================== */
-
-.boy.returnHome{
+.orbitBoy{
+    position:absolute;
+    width:auto;
+    height:175px;
+    left:50%;
+    top:50%;
+    z-index:20;
+    object-fit:contain;
 
     animation:
-        returnHome
-        3.2s
-        ease-in-out
-        forwards;
+    boyOrbit
+    6s
+    linear
+    infinite;
+}
+
+@keyframes boyOrbit{
+
+    0%{
+        transform:
+        translate(-250px,-10px)
+        scale(.55)
+        rotate(0);
+    }
+
+    12.5%{
+        transform:
+        translate(-175px,-120px)
+        scale(.48)
+        rotate(0);
+    }
+
+    25%{
+        transform:
+        translate(0,-180px)
+        scale(.42)
+        rotate(0);
+    }
+
+    37.5%{
+        transform:
+        translate(175px,-120px)
+        scale(.48)
+        rotate(0);
+    }
+
+    50%{
+        transform:
+        translate(250px,-10px)
+        scale(.55)
+        rotate(0);
+    }
+
+    62.5%{
+        transform:
+        translate(175px,110px)
+        scale(.48)
+        rotate(0);
+    }
+
+    75%{
+        transform:
+        translate(0,180px)
+        scale(.42)
+        rotate(0);
+    }
+
+    87.5%{
+        transform:
+        translate(-175px,110px)
+        scale(.48)
+        rotate(0);
+    }
+
+    100%{
+        transform:
+        translate(-250px,-10px)
+        scale(.55)
+        rotate(0);
+    }
+}
+      /* RETURN HOME */
+
+.returnBoy{
+    animation:
+    returnHome
+    3s
+    ease-in-out
+    forwards;
 }
 
 @keyframes returnHome{
@@ -893,28 +651,561 @@ body{
     0%{
         left:50%;
         top:50%;
-
         transform:
-            translate(-50%,-50%)
-            scale(.4);
+        translate(-50%,-50%)
+        scale(.45);
     }
 
     50%{
         left:65%;
         top:60%;
-
         transform:
-            translate(-50%,-50%)
-            scale(.7);
+        translate(-50%,-50%)
+        scale(.7);
     }
 
     100%{
         left:auto;
-        right:7%;
+        right:5%;
         top:auto;
-        bottom:8vh;
-
-        transform:
-            scale(1);
+        bottom:7vh;
+        transform:scale(1);
     }
 }
+
+/* FINAL HUG */
+
+.hug{
+    position:absolute;
+    width:auto;
+    height:70vh;
+    max-height:650px;
+    left:50%;
+    bottom:2vh;
+    transform:
+    translateX(-50%)
+    scale(.45);
+    opacity:0;
+    z-index:50;
+    object-fit:contain;
+    pointer-events:none;
+}
+
+.hug.show{
+    animation:
+    hugShow
+    1.5s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+}
+
+@keyframes hugShow{
+
+    0%{
+        opacity:0;
+        transform:
+        translateX(-50%)
+        scale(.45);
+    }
+
+    65%{
+        opacity:1;
+        transform:
+        translateX(-50%)
+        scale(1.06);
+    }
+
+    100%{
+        opacity:1;
+        transform:
+        translateX(-50%)
+        scale(1);
+    }
+}
+
+/* FINAL HEARTS */
+
+.finalHeart{
+    position:absolute;
+    font-size:30px;
+    z-index:60;
+    opacity:0;
+}
+
+.hearts .finalHeart{
+    animation:
+    floatHeart
+    3.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes floatHeart{
+
+    0%{
+        opacity:0;
+        transform:
+        translateY(25px)
+        scale(.4);
+    }
+
+    30%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+        translateY(-160px)
+        scale(1.3);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .person{
+        height:45vh;
+    }
+
+    .girl{
+        left:1%;
+    }
+
+    .boy{
+        right:1%;
+    }
+
+    .heart{
+        font-size:22px;
+        left:23%;
+    }
+
+    .handHeart{
+        font-size:34px;
+    }
+
+    .door{
+        width:80px;
+        height:175px;
+    }
+
+    .earth{
+        width:145px;
+        height:145px;
+    }
+
+    .orbit{
+        width:350px;
+        height:260px;
+    }
+
+    .orbitBoy{
+        height:125px;
+    }
+
+    .hug{
+        height:58vh;
+        bottom:5vh;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+    <!-- BACKGROUNDS -->
+
+    <div class="bg room" id="room"></div>
+
+    <div class="bg snow" id="snow"></div>
+
+    <div class="bg desert" id="desert"></div>
+
+    <div class="bg space" id="space"></div>
+
+
+    <!-- DOOR -->
+
+    <div class="door" id="door"></div>
+
+
+    <!-- GIRL -->
+
+    <img
+        src="Girl.png"
+        class="person girl"
+        id="girl"
+    >
+
+
+    <!-- BOY -->
+
+    <img
+        src="Boy.png"
+        class="person boy"
+        id="boy"
+    >
+
+
+    <!-- HEART GIRL THROWS -->
+
+    <div
+        class="heart"
+        id="heart"
+    >❤️</div>
+
+
+    <!-- IMPACT -->
+
+    <div
+        class="impact"
+        id="impact"
+    ></div>
+
+
+    <!-- HEART BOY HOLDS -->
+
+    <div
+        class="handHeart"
+        id="handHeart"
+    >❤️</div>
+
+
+    <!-- SNOW -->
+
+    <div
+        class="snowflakes"
+        id="snowflakes"
+    >
+
+        <span class="flake" style="left:5%;animation-duration:5s;">❄</span>
+        <span class="flake" style="left:15%;animation-duration:7s;">❄</span>
+        <span class="flake" style="left:27%;animation-duration:6s;">❄</span>
+        <span class="flake" style="left:40%;animation-duration:8s;">❄</span>
+        <span class="flake" style="left:53%;animation-duration:5.5s;">❄</span>
+        <span class="flake" style="left:66%;animation-duration:7.5s;">❄</span>
+        <span class="flake" style="left:78%;animation-duration:6.5s;">❄</span>
+        <span class="flake" style="left:90%;animation-duration:8.5s;">❄</span>
+
+    </div>
+
+
+    <!-- EARTH -->
+
+    <div
+        class="earth"
+        id="earth"
+    ></div>
+
+
+    <!-- ORBIT -->
+
+    <div
+        class="orbit"
+        id="orbit"
+    ></div>
+
+
+    <!-- HUG PNG -->
+
+    <img
+        src="Hug.png"
+        class="hug"
+        id="hug"
+    >
+
+
+    <!-- FINAL HEARTS -->
+
+    <div class="finalHeart h1" style="left:15%;bottom:20%;">❤️</div>
+    <div class="finalHeart h2" style="left:30%;bottom:35%;">💗</div>
+    <div class="finalHeart h3" style="left:55%;bottom:25%;">💕</div>
+    <div class="finalHeart h4" style="left:72%;bottom:40%;">❤️</div>
+    <div class="finalHeart h5" style="left:45%;bottom:55%;">💖</div>
+
+</div>
+<script>
+
+const room =
+document.getElementById("room");
+
+const snow =
+document.getElementById("snow");
+
+const desert =
+document.getElementById("desert");
+
+const space =
+document.getElementById("space");
+
+const girl =
+document.getElementById("girl");
+
+const boy =
+document.getElementById("boy");
+
+const heart =
+document.getElementById("heart");
+
+const impact =
+document.getElementById("impact");
+
+const handHeart =
+document.getElementById("handHeart");
+
+const door =
+document.getElementById("door");
+
+const snowflakes =
+document.getElementById("snowflakes");
+
+const earth =
+document.getElementById("earth");
+
+const orbit =
+document.getElementById("orbit");
+
+const hug =
+document.getElementById("hug");
+
+const finalHearts =
+document.querySelectorAll(".finalHeart");
+
+
+/* =====================================================
+   1. GIRL THROWS HEART
+===================================================== */
+
+setTimeout(() => {
+
+    girl.classList.add("throw");
+
+    heart.classList.add("fly");
+
+},1500);
+
+
+/* =====================================================
+   2. HEART HITS BOY
+===================================================== */
+
+setTimeout(() => {
+
+    heart.style.opacity="0";
+
+    boy.classList.add("hit");
+
+    impact.classList.add("show");
+
+},4200);
+
+
+/* =====================================================
+   3. HEART GOES INTO BOY'S HANDS
+===================================================== */
+
+setTimeout(() => {
+
+    handHeart.style.left="78%";
+    handHeart.style.top="51%";
+
+    handHeart.classList.add("show");
+
+},4850);
+
+
+/* =====================================================
+   4. DOOR OPENS
+===================================================== */
+
+setTimeout(() => {
+
+    door.classList.add("open");
+
+},5200);
+
+
+/* =====================================================
+   5. ROOM → SNOW
+===================================================== */
+
+setTimeout(() => {
+
+    room.style.opacity="0";
+
+    snow.style.opacity="1";
+
+    snowflakes.classList.add("show");
+
+    boy.classList.remove("hit");
+
+    boy.classList.add("snowTravel");
+
+    handHeart.style.left="72%";
+    handHeart.style.top="51%";
+
+},6200);
+
+
+/* =====================================================
+   6. SNOW → DESERT
+===================================================== */
+
+setTimeout(() => {
+
+    snow.style.opacity="0";
+
+    snowflakes.classList.remove("show");
+
+    desert.style.opacity="1";
+
+    boy.classList.remove("snowTravel");
+
+    boy.classList.add("desertTravel");
+
+    handHeart.style.left="25%";
+    handHeart.style.top="52%";
+
+},9800);
+
+
+/* =====================================================
+   7. DESERT → SPACE
+===================================================== */
+
+setTimeout(() => {
+
+    desert.style.opacity="0";
+
+    space.style.opacity="1";
+
+    boy.style.opacity="0";
+
+    handHeart.style.opacity="0";
+
+    earth.classList.add("show");
+
+    orbit.classList.add("show");
+
+},13200);
+
+
+/* =====================================================
+   8. BOY STARTS FULL EARTH ORBIT
+===================================================== */
+
+setTimeout(() => {
+
+    /* remove old boy position */
+
+    boy.classList.remove("desertTravel");
+
+    boy.classList.add("orbitBoy");
+
+    boy.style.position="absolute";
+
+    boy.style.left="50%";
+    boy.style.top="50%";
+
+    boy.style.right="auto";
+    boy.style.bottom="auto";
+
+    boy.style.opacity="1";
+
+    /*
+       Put heart with boy during orbit.
+       The heart stays beside his hands.
+    */
+
+    handHeart.style.position="absolute";
+
+    handHeart.style.left="50%";
+    handHeart.style.top="50%";
+
+    handHeart.style.transform=
+        "translate(-50%,-50%) translate(-250px,-5px) scale(.55)";
+
+    handHeart.style.opacity="1";
+
+},14300);
+
+
+/* =====================================================
+   9. RETURN FROM EARTH
+===================================================== */
+
+setTimeout(() => {
+
+    orbit.style.animation="none";
+
+    orbit.style.opacity="0";
+
+    earth.style.opacity="0";
+
+    boy.classList.remove("orbitBoy");
+
+    boy.style.position="absolute";
+
+    boy.style.left="auto";
+
+    boy.style.top="auto";
+
+    boy.style.right="5%";
+
+    boy.style.bottom="7vh";
+
+    boy.style.transform="scale(1)";
+
+    handHeart.style.opacity="1";
+
+},19000);
+
+
+/* =====================================================
+   10. BOY REACHES GIRL
+===================================================== */
+
+setTimeout(() => {
+
+    boy.style.opacity="0";
+
+    handHeart.style.opacity="0";
+
+    room.style.opacity="1";
+
+    space.style.opacity="0";
+
+    /*
+       Show the combined Hug PNG.
+    */
+
+    hug.classList.add("show");
+
+},22000);
+
+
+/* =====================================================
+   11. FINAL HEARTS
+===================================================== */
+
+setTimeout(() => {
+
+    document.body.classList.add("hearts");
+
+    finalHearts.forEach((h,i)=>{
+
+        h.style.animationDelay =
+            (i * 0.45) + "s";
+
+    });
+
+},23000);
+
+</script>
+
+</body>
+</html>
