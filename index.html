@@ -1,1 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Journey ❤️</title>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Background */
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, #26364d, #07101c 70%);
+  transition: background 1s ease;
+}
+
+/* Characters */
+.person {
+  position: absolute;
+  width: min(42vw, 330px);
+  max-height: 75vh;
+  object-fit: contain;
+  z-index: 5;
+}
+
+.girl {
+  left: 5%;
+  bottom: 5%;
+}
+
+.boy {
+  right: 8%;
+  bottom: 5%;
+  transform: scale(.75);
+}
+
+/* Heart */
+.heart {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  z-index: 10;
+  left: 25%;
+  bottom: 48%;
+  transform: rotate(-45deg);
+  background: #ff1744;
+  animation: none;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  background: #ff1744;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -38px;
+  left: 0;
+}
+
+.heart::after {
+  left: 38px;
+  top: 0;
+}
+
+@keyframes throwHeart {
+  0% {
+    left: 25%;
+    bottom: 48%;
+    transform: rotate(-45deg) scale(1);
+  }
+
+  70% {
+    transform: rotate(-45deg) scale(1.15);
+  }
+
+  100% {
+    left: 72%;
+    bottom: 48%;
+    transform: rotate(-45deg) scale(.8);
+  }
+}
+
+/* Impact */
+@keyframes hitBoy {
+  0%, 100% {
+    transform: scale(.75) rotate(0);
+  }
+
+  30% {
+    transform: scale(.85) rotate(-5deg);
+  }
+
+  60% {
+    transform: scale(.72) rotate(5deg);
+  }
+}
+
+/* Portal */
+.portal {
+  position: absolute;
+  width: 230px;
+  height: 360px;
+  border-radius: 50%;
+  border: 8px solid #9c7cff;
+  box-shadow:
+    0 0 25px #8f6fff,
+    0 0 60px #5d35d5 inset;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 2;
+}
+
+@keyframes portalOpen {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Boy travelling */
+@keyframes travel {
+  0% {
+    right: 8%;
+    bottom: 5%;
+    transform: scale(.75);
+  }
+
+  25% {
+    right: 40%;
+    bottom: 45%;
+    transform: scale(.5);
+  }
+
+  50% {
+    right: 65%;
+    bottom: 55%;
+    transform: scale(.4);
+  }
+
+  75% {
+    right: 30%;
+    bottom: 65%;
+    transform: scale(.3);
+  }
+
+  100% {
+    right: 48%;
+    bottom: 45%;
+    transform: scale(.65);
+  }
+}
+
+/* Earth */
+.earth {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, #55c7ff, #1260a8 55%, #031b38);
+  box-shadow:
+    0 0 35px #3da9ff,
+    inset -20px -20px 35px rgba(0,0,0,.5);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1;
+}
+
+@keyframes earthAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Final scene */
+.hug {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 20;
+  opacity: 0;
+  transform: scale(.8);
+}
+
+@keyframes finalHug {
+  0% {
+    opacity: 0;
+    transform: scale(.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scene labels */
+.label {
+  position: absolute;
+  top: 7%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: clamp(20px, 4vw, 38px);
+  font-weight: bold;
+  opacity: 0;
+  z-index: 30;
+  text-shadow: 0 2px 8px #000;
+}
+
+@keyframes showLabel {
+  0%,100% { opacity: 0; }
+  30%,70% { opacity: 1; }
+}
+
+/* Snow */
+.snow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 15;
+  background-image:
+    radial-gradient(circle, white 2px, transparent 3px),
+    radial-gradient(circle, white 1px, transparent 2px);
+  background-size: 55px 55px, 35px 35px;
+  animation: snowFall 2s linear infinite;
+}
+
+@keyframes snowFall {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 0 400px, 100px 300px; }
+}
+
+/* Desert */
+.desert {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    linear-gradient(#eab86c 0 45%, #c77b32 45% 100%);
+  z-index: 0;
+}
+
+.desert::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 45%;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at 30% 100%, #9b5428 0 35%, transparent 36%),
+    radial-gradient(ellipse at 75% 100%, #a75b29 0 40%, transparent 41%);
+}
+
+/* Timeline classes */
+.scene1 .heart {
+  animation: throwHeart 2s ease-in-out forwards;
+}
+
+.scene2 .boy {
+  animation: hitBoy .6s ease-in-out 2;
+}
+
+.scene3 .portal {
+  animation: portalOpen 1s forwards;
+}
+
+.scene4 .snow {
+  opacity: .75;
+}
+
+.scene5 .desert {
+  opacity: 1;
+}
+
+.scene6 .earth {
+  animation: earthAppear 1s forwards;
+}
+
+.scene6 .boy {
+  animation: travel 4s ease-in-out forwards;
+}
+
+.scene7 .hug {
+  animation: finalHug 1.5s ease-out forwards;
+}
+
+.scene7 .girl,
+.scene7 .boy,
+.scene7 .heart,
+.scene7 .portal,
+.scene7 .earth,
+.scene7 .snow,
+.scene7 .desert {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene" id="scene">
+
+  <div class="bg" id="bg"></div>
+  <div class="desert"></div>
+  <div class="snow"></div>
+
+  <div class="portal"></div>
+  <div class="earth"></div>
+
+  <img src="girl.png" class="person girl">
+  <img src="boy.png" class="person boy">
+
+  <div class="heart"></div>
+
+  <img src="hug.png" class="hug">
+
+  <div class="label" id="label"></div>
+
+</div>
+
+<script>
+
+const scene = document.getElementById("scene");
+const bg = document.getElementById("bg");
+const label = document.getElementById("label");
+
+function changeScene(number, text, background) {
+
+  scene.className = "scene scene" + number;
+
+  label.textContent = text;
+  label.style.animation = "none";
+  void label.offsetWidth;
+  label.style.animation = "showLabel 2.5s ease";
+
+  if (background) {
+    bg.style.background = background;
+  }
+}
+
+/* Start */
+changeScene(
+  1,
+  "A little heart... ❤️",
+  "radial-gradient(circle at center, #5b1025, #120008)"
+);
+
+/* Heart hits boy */
+setTimeout(() => {
+
+  changeScene(
+    2,
+    "Straight to his heart ❤️",
+    "radial-gradient(circle at center, #42132b, #09000a)"
+  );
+
+}, 2600);
+
+/* Portal */
+setTimeout(() => {
+
+  changeScene(
+    3,
+    "And then... he begins the journey ✨",
+    "radial-gradient(circle at center, #26164f, #05020d)"
+  );
+
+}, 3900);
+
+/* Snow */
+setTimeout(() => {
+
+  changeScene(
+    4,
+    "Through the snow ❄️",
+    "linear-gradient(#b9d9f5, #547fa8)"
+  );
+
+}, 5400);
+
+/* Desert */
+setTimeout(() => {
+
+  changeScene(
+    5,
+    "Across the desert 🏜️",
+    "linear-gradient(#f4c879, #b96b2c)"
+  );
+
+}, 7800);
+
+/* Earth */
+setTimeout(() => {
+
+  changeScene(
+    6,
+    "Around the whole world 🌍",
+    "radial-gradient(circle, #071f3d, #000 70%)"
+  );
+
+}, 10200);
+
+/* Final hug */
+setTimeout(() => {
+
+  changeScene(
+    7,
+    "And finally... back to you ❤️",
+    "linear-gradient(#180713, #000)"
+  );
+
+}, 14800);
+
+</script>
+
+</body>
+  </html>
