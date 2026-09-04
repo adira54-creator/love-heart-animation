@@ -1,866 +1,635 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Our Journey ❤️</title>
 
 <style>
 *{
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#000;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family:Arial,sans-serif;
 }
 
-.stage{
-  position:relative;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  background:#08030d;
+.scene{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
 }
 
 /* ---------- BACKGROUNDS ---------- */
 
-.background{
-  position:absolute;
-  inset:0;
-  transition:1s;
-}
-
 .home{
-  background:
-    radial-gradient(circle at 50% 45%,#70203d 0%,#260817 35%,#050106 80%);
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at 50% 30%,#ffd6e7 0%,#f7a9c5 35%,#9b5575 100%);
 }
 
-.portal-bg{
-  background:
-    radial-gradient(circle,#41206c 0%,#150c2b 40%,#030107 85%);
+.snow{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    background:
+        linear-gradient(#b9d9ef,#eaf7ff 60%,#fff);
+    transition:opacity 1s;
 }
 
-.snow-bg{
-  background:
-    linear-gradient(#dcefff 0%,#9ec5e4 48%,#507b9d 100%);
+.desert{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    background:
+        linear-gradient(#69c9ff 0%,#bcecff 45%,#e6a653 46%,#c77b32 100%);
+    transition:opacity 1s;
 }
 
-.desert-bg{
-  background:
-    linear-gradient(#f9d894 0%,#e6a950 45%,#a95c2b 100%);
+.space{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    background:
+        radial-gradient(circle at 20% 30%,white 1px,transparent 2px),
+        radial-gradient(circle at 70% 20%,white 1px,transparent 2px),
+        radial-gradient(circle at 40% 75%,white 1px,transparent 2px),
+        radial-gradient(circle at 85% 65%,white 1px,transparent 2px),
+        #02020d;
+    background-size:180px 180px;
+    transition:opacity 1s;
 }
 
-.space-bg{
-  background:
-    radial-gradient(circle at 50% 50%,#071e43 0%,#020817 35%,#000 80%);
-}
-
-/* ---------- GIRL / BOY ---------- */
+/* ---------- CHARACTERS ---------- */
 
 .person{
-  position:absolute;
-  object-fit:contain;
-  z-index:5;
-  user-select:none;
-  pointer-events:none;
+    position:absolute;
+    height:55vh;
+    max-height:520px;
+    width:auto;
+    bottom:7vh;
+    object-fit:contain;
+    z-index:5;
 }
 
 .girl{
-  width:min(48vw,360px);
-  height:78vh;
-  left:3vw;
-  bottom:2vh;
+    left:8%;
 }
 
 .boy{
-  width:min(43vw,330px);
-  height:73vh;
-  right:5vw;
-  bottom:3vh;
+    right:8%;
 }
 
 /* ---------- HEART ---------- */
 
 .heart{
-  position:absolute;
-  width:58px;
-  height:58px;
-  left:27%;
-  top:42%;
-  z-index:12;
-  transform:rotate(-45deg);
-  background:#ff1744;
-  filter:
-    drop-shadow(0 0 8px #ff1744)
-    drop-shadow(0 0 20px rgba(255,23,68,.8));
+    position:absolute;
+    z-index:10;
+    left:43%;
+    bottom:36%;
+    font-size:65px;
+    filter:drop-shadow(0 0 15px #ff4f91);
+    transform:scale(1);
 }
 
-.heart:before,
-.heart:after{
-  content:"";
-  position:absolute;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:#ff1744;
-}
-
-.heart:before{
-  top:-29px;
-  left:0;
-}
-
-.heart:after{
-  left:29px;
-  top:0;
-}
-
-/* ---------- HEART THROW ---------- */
+/* ---------- THROW ---------- */
 
 .throw{
-  animation:throwHeart 1.8s cubic-bezier(.15,.8,.2,1) forwards;
+    animation:throwHeart 1.8s ease-in forwards;
 }
 
 @keyframes throwHeart{
+    0%{
+        left:43%;
+        bottom:36%;
+        transform:scale(1) rotate(0deg);
+    }
 
-  0%{
-    left:27%;
-    top:42%;
-    transform:rotate(-45deg) scale(1);
-  }
+    50%{
+        left:62%;
+        bottom:43%;
+        transform:scale(1.25) rotate(20deg);
+    }
 
-  20%{
-    transform:rotate(-35deg) scale(1.15);
-  }
-
-  55%{
-    left:52%;
-    top:36%;
-    transform:rotate(15deg) scale(1.1);
-  }
-
-  100%{
-    left:75%;
-    top:43%;
-    transform:rotate(45deg) scale(.72);
-  }
+    100%{
+        left:82%;
+        bottom:45%;
+        transform:scale(.7) rotate(40deg);
+    }
 }
 
-/* ---------- IMPACT ---------- */
+/* ---------- HIT ---------- */
 
 .hit{
-  animation:hit .7s ease-in-out 2;
+    animation:hitBoy .8s ease forwards;
 }
 
-@keyframes hit{
-
-  0%,100%{
-    transform:translateX(0) rotate(0);
-  }
-
-  20%{
-    transform:translateX(-18px) rotate(-5deg);
-  }
-
-  40%{
-    transform:translateX(18px) rotate(5deg);
-  }
-
-  60%{
-    transform:translateX(-10px) rotate(-3deg);
-  }
-
-  80%{
-    transform:translateX(7px) rotate(2deg);
-  }
-}
-
-/* ---------- IMPACT FLASH ---------- */
-
-.flash{
-  position:absolute;
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  left:75%;
-  top:43%;
-  transform:translate(-50%,-50%) scale(0);
-  background:rgba(255,255,255,.9);
-  box-shadow:
-    0 0 30px #fff,
-    0 0 80px #ff3158;
-  z-index:20;
-  pointer-events:none;
-}
-
-.flash.active{
-  animation:flash .65s ease-out;
-}
-
-@keyframes flash{
-  0%{
-    transform:translate(-50%,-50%) scale(0);
-    opacity:1;
-  }
-  35%{
-    transform:translate(-50%,-50%) scale(1);
-    opacity:.9;
-  }
-  100%{
-    transform:translate(-50%,-50%) scale(2);
-    opacity:0;
-  }
+@keyframes hitBoy{
+    0%{transform:translateX(0) rotate(0);}
+    35%{transform:translateX(35px) rotate(8deg);}
+    70%{transform:translateX(-25px) rotate(-8deg);}
+    100%{transform:translateX(0) rotate(0);}
 }
 
 /* ---------- PORTAL ---------- */
 
 .portal{
-  position:absolute;
-  width:190px;
-  height:320px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(0);
-  border-radius:50%;
-  border:8px solid #b78cff;
-  background:radial-gradient(
-    ellipse,
-    rgba(194,151,255,.4),
-    rgba(80,30,150,.15),
-    transparent 70%
-  );
-  box-shadow:
-    0 0 25px #b78cff,
-    0 0 70px #7541d8,
-    inset 0 0 45px #9d6dff;
-  z-index:4;
+    position:absolute;
+    width:150px;
+    height:230px;
+    right:4%;
+    bottom:20%;
+    border-radius:50% 50% 10% 10%;
+    background:radial-gradient(circle,#fff,#9c5cff 35%,#31105e 70%,transparent 72%);
+    box-shadow:0 0 35px #b56cff,0 0 80px #7b29ff;
+    opacity:0;
+    transform:scale(.2);
+    z-index:3;
 }
 
 .portal.open{
-  animation:portalOpen 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+    animation:portalOpen 1.5s forwards;
 }
 
 @keyframes portalOpen{
-  0%{
-    transform:translate(-50%,-50%) scale(0) rotate(-10deg);
-    opacity:0;
-  }
-
-  70%{
-    transform:translate(-50%,-50%) scale(1.15) rotate(3deg);
-    opacity:1;
-  }
-
-  100%{
-    transform:translate(-50%,-50%) scale(1) rotate(0);
-    opacity:1;
-  }
+    0%{
+        opacity:0;
+        transform:scale(.2);
+    }
+    60%{
+        opacity:1;
+        transform:scale(1.15);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
-/* ---------- TRAVEL BOY ---------- */
+/* ---------- BOY JOURNEY ---------- */
 
-.travel-boy{
-  animation:travelBoy 4s cubic-bezier(.4,.1,.2,1) forwards;
+.travel{
+    animation:travelBoy 3.5s ease-in-out forwards;
 }
 
 @keyframes travelBoy{
+    0%{
+        right:8%;
+        bottom:7vh;
+        transform:scale(1);
+    }
 
-  0%{
-    right:4vw;
-    bottom:3vh;
-    transform:scale(.72);
-  }
+    30%{
+        right:3%;
+        bottom:20vh;
+        transform:scale(.7);
+    }
 
-  20%{
-    right:44%;
-    bottom:38%;
-    transform:scale(.38);
-  }
+    60%{
+        right:42%;
+        bottom:45vh;
+        transform:scale(.55);
+    }
 
-  40%{
-    right:67%;
-    bottom:55%;
-    transform:scale(.27);
-  }
-
-  60%{
-    right:34%;
-    bottom:67%;
-    transform:scale(.23);
-  }
-
-  80%{
-    right:20%;
-    bottom:42%;
-    transform:scale(.31);
-  }
-
-  100%{
-    right:46%;
-    bottom:38%;
-    transform:scale(.58);
-  }
+    100%{
+        right:50%;
+        bottom:42vh;
+        transform:scale(.45);
+    }
 }
 
-/* ---------- SNOW ---------- */
+/* ---------- DESERT JOURNEY ---------- */
 
-.snow{
-  position:absolute;
-  inset:-100px;
-  z-index:10;
-  opacity:0;
-  pointer-events:none;
-
-  background-image:
-    radial-gradient(circle,white 0 2px,transparent 3px),
-    radial-gradient(circle,rgba(255,255,255,.8) 0 1px,transparent 2px),
-    radial-gradient(circle,white 0 3px,transparent 4px);
-
-  background-size:
-    55px 55px,
-    35px 35px,
-    90px 90px;
-
-  animation:snowFall .7s linear infinite;
+.desertMove{
+    animation:desertMove 3s ease-in-out forwards;
 }
 
-.snow.show{
-  opacity:.85;
-}
+@keyframes desertMove{
+    0%{
+        right:50%;
+        bottom:42vh;
+        transform:scale(.45);
+    }
 
-@keyframes snowFall{
-  from{
-    background-position:0 0,0 0,0 0;
-  }
+    50%{
+        right:25%;
+        bottom:28vh;
+        transform:scale(.5);
+    }
 
-  to{
-    background-position:30px 500px,-40px 400px,60px 600px;
-  }
-}
-
-/* ---------- DESERT WIND ---------- */
-
-.sand{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  z-index:2;
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      ellipse at 20% 100%,
-      #b96d31 0 20%,
-      transparent 21%
-    ),
-    radial-gradient(
-      ellipse at 75% 100%,
-      #a75c2b 0 28%,
-      transparent 29%
-    );
-}
-
-.sand.show{
-  opacity:1;
-}
-
-.sand::after{
-  content:"";
-  position:absolute;
-  width:160%;
-  height:25%;
-  left:-30%;
-  bottom:12%;
-  border-radius:50%;
-  border-top:4px solid rgba(255,220,150,.35);
-  border-bottom:3px solid rgba(130,70,30,.2);
-  transform:rotate(-4deg);
+    100%{
+        right:50%;
+        bottom:40vh;
+        transform:scale(.4);
+    }
 }
 
 /* ---------- EARTH ---------- */
 
 .earth{
-  position:absolute;
-  width:180px;
-  height:180px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(0);
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle at 32% 30%,
-      #7ee5ff 0 8%,
-      #258bd0 35%,
-      #07518e 65%,
-      #021c38 100%
-    );
-
-  box-shadow:
-    0 0 25px #40bfff,
-    0 0 70px rgba(40,160,255,.55),
-    inset -25px -15px 35px rgba(0,0,0,.7);
-
-  z-index:2;
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle at 35% 35%,#6ee7ff,#1877d2 45%,#06345f 75%);
+    box-shadow:
+        0 0 30px #4dc7ff,
+        0 0 70px #1685d8;
+    opacity:0;
+    z-index:2;
 }
 
 .earth.show{
-  animation:earthIn 1s ease-out forwards;
+    animation:earthShow 1s forwards;
 }
 
-@keyframes earthIn{
-  from{
-    transform:translate(-50%,-50%) scale(0);
-  }
-
-  to{
-    transform:translate(-50%,-50%) scale(1);
-  }
+@keyframes earthShow{
+    from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.4);
+    }
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+    }
 }
 
-/* ---------- ORBIT RING ---------- */
+/* ---------- ORBIT ---------- */
 
 .orbit{
-  position:absolute;
-  width:440px;
-  height:220px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border:1px solid rgba(150,210,255,.35);
-  border-radius:50%;
-  opacity:0;
-  z-index:1;
+    position:absolute;
+    width:330px;
+    height:180px;
+    border:2px solid rgba(255,255,255,.45);
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-15deg);
+    opacity:0;
 }
 
 .orbit.show{
-  opacity:1;
+    animation:orbitShow 1s forwards;
 }
 
-/* ---------- SPACE BOY ORBIT ---------- */
+@keyframes orbitShow{
+    from{opacity:0;}
+    to{opacity:1;}
+}
 
-.orbit-boy{
-  animation:orbitBoy 3.5s linear forwards;
+.orbitBoy{
+    animation:orbitBoy 4s linear infinite;
 }
 
 @keyframes orbitBoy{
+    0%{
+        transform:translate(-165px,-10px) scale(.35);
+    }
 
-  0%{
-    right:46%;
-    bottom:38%;
-    transform:scale(.58) rotate(0);
-  }
+    25%{
+        transform:translate(-50px,-100px) scale(.32);
+    }
 
-  25%{
-    right:25%;
-    bottom:65%;
-    transform:scale(.34) rotate(90deg);
-  }
+    50%{
+        transform:translate(165px,-10px) scale(.35);
+    }
 
-  50%{
-    right:3%;
-    bottom:42%;
-    transform:scale(.27) rotate(180deg);
-  }
+    75%{
+        transform:translate(50px,90px) scale(.32);
+    }
 
-  75%{
-    right:25%;
-    bottom:15%;
-    transform:scale(.34) rotate(270deg);
-  }
-
-  100%{
-    right:46%;
-    bottom:38%;
-    transform:scale(.58) rotate(360deg);
-  }
+    100%{
+        transform:translate(-165px,-10px) scale(.35);
+    }
 }
 
-/* ---------- STARS ---------- */
+/* ---------- RETURN ---------- */
 
-.stars{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  background-image:
-    radial-gradient(circle,#fff 1px,transparent 2px),
-    radial-gradient(circle,#fff 1px,transparent 2px),
-    radial-gradient(circle,#fff 2px,transparent 3px);
-
-  background-size:90px 90px,130px 130px,200px 200px;
-  background-position:20px 30px,70px 90px,100px 20px;
-  z-index:0;
+.return{
+    animation:returnBoy 3s ease-in forwards;
 }
 
-.stars.show{
-  opacity:.7;
+@keyframes returnBoy{
+    0%{
+        right:50%;
+        bottom:40vh;
+        transform:scale(.4);
+    }
+
+    50%{
+        right:30%;
+        bottom:30vh;
+        transform:scale(.6);
+    }
+
+    100%{
+        right:18%;
+        bottom:7vh;
+        transform:scale(1);
+    }
 }
 
-/* ---------- FINAL HUG ---------- */
+/* ---------- HUG ---------- */
 
 .hug{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  z-index:50;
-  opacity:0;
-  transform:scale(.65);
-  pointer-events:none;
+    position:absolute;
+    width:auto;
+    height:65vh;
+    max-height:600px;
+    left:50%;
+    bottom:3vh;
+    transform:translateX(-50%) scale(.5);
+    opacity:0;
+    z-index:20;
 }
 
 .hug.show{
-  animation:hugIn 1.7s cubic-bezier(.2,.8,.2,1) forwards;
+    animation:hugShow 1.5s ease-out forwards;
 }
 
-@keyframes hugIn{
-  0%{
+@keyframes hugShow{
+    0%{
+        opacity:0;
+        transform:translateX(-50%) scale(.5);
+    }
+
+    70%{
+        opacity:1;
+        transform:translateX(-50%) scale(1.08);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateX(-50%) scale(1);
+    }
+}
+
+/* ---------- FINAL HEARTS ---------- */
+
+.finalHeart{
+    position:absolute;
+    font-size:30px;
+    z-index:30;
     opacity:0;
-    transform:scale(.65);
-  }
-
-  70%{
-    opacity:1;
-    transform:scale(1.05);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1);
-  }
 }
 
-/* ---------- HEARTS AT END ---------- */
+.h1{left:20%;bottom:20%;}
+.h2{left:35%;bottom:35%;}
+.h3{left:55%;bottom:25%;}
+.h4{left:70%;bottom:40%;}
+.h5{left:45%;bottom:55%;}
 
-.final-hearts{
-  position:absolute;
-  inset:0;
-  z-index:60;
-  pointer-events:none;
-  opacity:0;
-}
-
-.final-hearts.show{
-  opacity:1;
-}
-
-.final-hearts span{
-  position:absolute;
-  font-size:28px;
-  animation:floatHeart 2.5s ease-in-out infinite;
-}
-
-.final-hearts span:nth-child(1){
-  left:20%;
-  bottom:15%;
-}
-
-.final-hearts span:nth-child(2){
-  left:72%;
-  bottom:20%;
-  animation-delay:.4s;
-}
-
-.final-hearts span:nth-child(3){
-  left:35%;
-  bottom:10%;
-  animation-delay:.8s;
-}
-
-.final-hearts span:nth-child(4){
-  left:82%;
-  bottom:35%;
-  animation-delay:1.1s;
+.hearts .finalHeart{
+    animation:floatHeart 3s ease-in-out infinite;
 }
 
 @keyframes floatHeart{
-  0%{
-    transform:translateY(20px) scale(.6);
-    opacity:0;
-  }
+    0%{
+        opacity:0;
+        transform:translateY(20px) scale(.5);
+    }
 
-  30%{
-    opacity:1;
-  }
+    30%{
+        opacity:1;
+    }
 
-  100%{
-    transform:translateY(-120px) scale(1.2);
-    opacity:0;
-  }
+    100%{
+        opacity:0;
+        transform:translateY(-150px) scale(1.3);
+    }
 }
 
-/* ---------- FADE ---------- */
+/* ---------- MOBILE ---------- */
 
-.fade{
-  position:absolute;
-  inset:0;
-  background:#000;
-  z-index:100;
-  opacity:0;
-  pointer-events:none;
+@media(max-width:600px){
+
+    .person{
+        height:43vh;
+        bottom:9vh;
+    }
+
+    .girl{
+        left:2%;
+    }
+
+    .boy{
+        right:2%;
+    }
+
+    .heart{
+        font-size:48px;
+        left:43%;
+        bottom:32%;
+    }
+
+    .portal{
+        width:100px;
+        height:170px;
+    }
+
+    .earth{
+        width:130px;
+        height:130px;
+    }
+
+    .orbit{
+        width:250px;
+        height:140px;
+    }
+
+    .hug{
+        height:55vh;
+        bottom:7vh;
+    }
 }
-
-.fade.on{
-  animation:fadeScreen 1s ease;
-}
-
-@keyframes fadeScreen{
-  0%{opacity:0}
-  50%{opacity:.65}
-  100%{opacity:0}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="stage">
+<div class="scene">
 
-  <div class="background home" id="background"></div>
+    <!-- BACKGROUNDS -->
+    <div class="home" id="home"></div>
+    <div class="snow" id="snow"></div>
+    <div class="desert" id="desert"></div>
+    <div class="space" id="space"></div>
 
-  <div class="stars" id="stars"></div>
+    <!-- CHARACTERS -->
+    <img src="Girl.png" class="person girl" id="girl">
+    <img src="Boy.png" class="person boy" id="boy">
 
-  <div class="sand" id="sand"></div>
+    <!-- HEART -->
+    <div class="heart" id="heart">❤️</div>
 
-  <div class="snow" id="snow"></div>
+    <!-- PORTAL -->
+    <div class="portal" id="portal"></div>
 
-  <div class="orbit" id="orbit"></div>
+    <!-- EARTH -->
+    <div class="earth" id="earth"></div>
+    <div class="orbit" id="orbit"></div>
 
-  <div class="earth" id="earth"></div>
+    <!-- FINAL HUG -->
+    <img src="Hug.png" class="hug" id="hug">
 
-  <div class="portal" id="portal"></div>
-
-  <img src="girl.png" class="person girl" id="girl">
-
-  <img src="boy.png" class="person boy" id="boy">
-
-  <div class="heart" id="heart"></div>
-
-  <div class="flash" id="flash"></div>
-
-  <img src="hug.png" class="hug" id="hug">
-
-  <div class="final-hearts" id="finalHearts">
-    <span>❤️</span>
-    <span>💗</span>
-    <span>❤️</span>
-    <span>💖</span>
-  </div>
-
-  <div class="fade" id="fade"></div>
+    <!-- FLOATING HEARTS -->
+    <div class="finalHeart h1">❤️</div>
+    <div class="finalHeart h2">💗</div>
+    <div class="finalHeart h3">💕</div>
+    <div class="finalHeart h4">❤️</div>
+    <div class="finalHeart h5">💖</div>
 
 </div>
 
-
 <script>
 
-const bg = document.getElementById("background");
-const girl = document.getElementById("girl");
-const boy = document.getElementById("boy");
 const heart = document.getElementById("heart");
-const flash = document.getElementById("flash");
+const boy = document.getElementById("boy");
 const portal = document.getElementById("portal");
+
 const snow = document.getElementById("snow");
-const sand = document.getElementById("sand");
-const stars = document.getElementById("stars");
+const desert = document.getElementById("desert");
+const space = document.getElementById("space");
+
 const earth = document.getElementById("earth");
 const orbit = document.getElementById("orbit");
+
 const hug = document.getElementById("hug");
-const finalHearts = document.getElementById("finalHearts");
-const fade = document.getElementById("fade");
+
+const finalHearts = document.querySelectorAll(".finalHeart");
 
 
-function resetAnimation(element){
-  element.style.animation="none";
-  void element.offsetWidth;
-  element.style.animation="";
-}
+/* 1 — HEART THROW */
+
+setTimeout(() => {
+    heart.classList.add("throw");
+},2000);
 
 
-/* 0 sec
-   GIRL + HEART
-*/
+/* 2 — HEART HITS BOY */
 
-setTimeout(()=>{
-
-  bg.className="background home";
-
-},100);
+setTimeout(() => {
+    heart.style.opacity="0";
+    boy.classList.add("hit");
+},3800);
 
 
-/* 2.5 sec
-   THROW HEART
-*/
+/* 3 — PORTAL OPENS */
 
-setTimeout(()=>{
-
-  resetAnimation(heart);
-  heart.classList.add("throw");
-
-},2500);
+setTimeout(() => {
+    portal.classList.add("open");
+},4800);
 
 
-/* 4.3 sec
-   HIT BOY
-*/
+/* 4 — BOY ENTERS PORTAL */
 
-setTimeout(()=>{
-
-  resetAnimation(boy);
-  boy.classList.add("hit");
-
-  flash.classList.remove("active");
-  void flash.offsetWidth;
-  flash.classList.add("active");
-
-},4300);
+setTimeout(() => {
+    boy.classList.add("travel");
+},5700);
 
 
-/* 5.8 sec
-   PORTAL
-*/
+/* 5 — SNOW WORLD */
 
-setTimeout(()=>{
-
-  bg.className="background portal-bg";
-
-  girl.style.opacity="0";
-  heart.style.opacity="0";
-
-  portal.classList.add("open");
-
-},5800);
-
-
-/* 7.2 sec
-   SNOW
-*/
-
-setTimeout(()=>{
-
-  bg.className="background snow-bg";
-
-  portal.style.opacity="0";
-
-  snow.classList.add("show");
-
-  resetAnimation(boy);
-  boy.classList.add("travel-boy");
-
+setTimeout(() => {
+    snow.style.opacity="1";
 },7200);
 
 
-/* 10.8 sec
-   DESERT
-*/
+/* 6 — DESERT */
 
-setTimeout(()=>{
+setTimeout(() => {
+    snow.style.opacity="0";
+    desert.style.opacity="1";
 
-  bg.className="background desert-bg";
-
-  snow.classList.remove("show");
-
-  sand.classList.add("show");
-
-},10800);
+    boy.classList.remove("travel");
+    boy.classList.add("desertMove");
+},10500);
 
 
-/* 13.8 sec
-   SPACE
-*/
+/* 7 — SPACE */
 
-setTimeout(()=>{
+setTimeout(() => {
 
-  bg.className="background space-bg";
+    desert.style.opacity="0";
+    space.style.opacity="1";
 
-  sand.classList.remove("show");
+    boy.style.opacity="0";
 
-  stars.classList.add("show");
+    earth.classList.add("show");
+    orbit.classList.add("show");
 
-  earth.classList.add("show");
-
-  orbit.classList.add("show");
-
-},13800);
+},13500);
 
 
-/* 15 sec
-   EARTH ORBIT
-*/
+/* 8 — BOY ORBITS EARTH */
 
-setTimeout(()=>{
+setTimeout(() => {
 
-  resetAnimation(boy);
-  boy.classList.remove("travel-boy");
-  boy.classList.add("orbit-boy");
+    boy.style.opacity="1";
 
-},15000);
+    boy.classList.remove("desertMove");
 
+    boy.style.position="absolute";
+    boy.style.left="50%";
+    boy.style.top="50%";
+    boy.style.right="auto";
+    boy.style.bottom="auto";
 
-/* 18.5 sec
-   RETURN TO GIRL
-*/
+    boy.classList.add("orbitBoy");
 
-setTimeout(()=>{
-
-  resetAnimation(boy);
-
-  boy.style.right="47%";
-  boy.style.bottom="37%";
-  boy.style.transform="scale(.58)";
-
-  stars.classList.remove("show");
-  orbit.classList.remove("show");
-  earth.classList.remove("show");
-
-  bg.className="background home";
-
-},18500);
+},14500);
 
 
-/* 21 sec
-   FINAL HUG
-*/
+/* 9 — RETURN */
 
-setTimeout(()=>{
+setTimeout(() => {
 
-  fade.classList.remove("on");
-  void fade.offsetWidth;
-  fade.classList.add("on");
+    boy.classList.remove("orbitBoy");
 
-  setTimeout(()=>{
+    earth.style.opacity="0";
+    orbit.style.opacity="0";
 
-    girl.style.display="none";
-    boy.style.display="none";
+    boy.classList.add("return");
 
+},19000);
+
+
+/* 10 — FINAL HUG */
+
+setTimeout(() => {
+
+    boy.style.opacity="0";
     hug.classList.add("show");
 
-    finalHearts.classList.add("show");
-
-  },450);
-
-},21000);
+},22000);
 
 
-/* 25 sec
-   MORE HEARTS
-*/
+/* 11 — HEARTS */
 
-setTimeout(()=>{
+setTimeout(() => {
 
-  finalHearts.classList.add("show");
+    document.body.classList.add("hearts");
 
-},25000);
+    finalHearts.forEach((h,i)=>{
+        h.style.animationDelay=(i*0.4)+"s";
+    });
+
+},23000);
 
 </script>
 
 </body>
-  </html>
+</html>
