@@ -81,11 +81,11 @@ html,body{
     z-index:5;
 }
 
-.girl{
+.Girl{
     left:8%;
 }
 
-.boy{
+.Boy{
     right:8%;
 }
 
@@ -344,7 +344,7 @@ html,body{
 
 /* ---------- HUG ---------- */
 
-.hug{
+.Hug{
     position:absolute;
     width:auto;
     height:65vh;
@@ -356,11 +356,11 @@ html,body{
     z-index:20;
 }
 
-.hug.show{
-    animation:hugShow 1.5s ease-out forwards;
+.Hug.show{
+    animation:HugShow 1.5s ease-out forwards;
 }
 
-@keyframes hugShow{
+@keyframes HugShow{
     0%{
         opacity:0;
         transform:translateX(-50%) scale(.5);
@@ -421,11 +421,11 @@ html,body{
         bottom:9vh;
     }
 
-    .girl{
+    .Girl{
         left:2%;
     }
 
-    .boy{
+    .Boy{
         right:2%;
     }
 
@@ -450,7 +450,7 @@ html,body{
         height:140px;
     }
 
-    .hug{
+    .Hug{
         height:55vh;
         bottom:7vh;
     }
@@ -578,17 +578,17 @@ setTimeout(() => {
 
 setTimeout(() => {
 
-    boy.style.opacity="1";
+    Boy.style.opacity="1";
 
-    boy.classList.remove("desertMove");
+    Boy.classList.remove("desertMove");
 
-    boy.style.position="absolute";
-    boy.style.left="50%";
-    boy.style.top="50%";
-    boy.style.right="auto";
-    boy.style.bottom="auto";
+    Boy.style.position="absolute";
+    Boy.style.left="50%";
+    Boy.style.top="50%";
+    Boy.style.right="auto";
+    Boy.style.bottom="auto";
 
-    boy.classList.add("orbitBoy");
+    Boy.classList.add("orbitBoy");
 
 },14500);
 
@@ -597,12 +597,12 @@ setTimeout(() => {
 
 setTimeout(() => {
 
-    boy.classList.remove("orbitBoy");
+    Boy.classList.remove("orbitBoy");
 
     earth.style.opacity="0";
     orbit.style.opacity="0";
 
-    boy.classList.add("return");
+    Boy.classList.add("return");
 
 },19000);
 
@@ -611,8 +611,8 @@ setTimeout(() => {
 
 setTimeout(() => {
 
-    boy.style.opacity="0";
-    hug.classList.add("show");
+    Boy.style.opacity="0";
+    Hug.classList.add("show");
 
 },22000);
 
