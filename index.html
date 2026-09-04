@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,452 +6,859 @@
 <title>Our Journey ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #000;
-  font-family: Arial, sans-serif;
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#000;
 }
 
-.scene {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+.stage{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#08030d;
 }
 
-/* Background */
-.bg {
-  position: absolute;
-  inset: 0;
+/* ---------- BACKGROUNDS ---------- */
+
+.background{
+  position:absolute;
+  inset:0;
+  transition:1s;
+}
+
+.home{
   background:
-    radial-gradient(circle at center, #26364d, #07101c 70%);
-  transition: background 1s ease;
+    radial-gradient(circle at 50% 45%,#70203d 0%,#260817 35%,#050106 80%);
 }
 
-/* Characters */
-.person {
-  position: absolute;
-  width: min(42vw, 330px);
-  max-height: 75vh;
-  object-fit: contain;
-  z-index: 5;
-}
-
-.girl {
-  left: 5%;
-  bottom: 5%;
-}
-
-.boy {
-  right: 8%;
-  bottom: 5%;
-  transform: scale(.75);
-}
-
-/* Heart */
-.heart {
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  z-index: 10;
-  left: 25%;
-  bottom: 48%;
-  transform: rotate(-45deg);
-  background: #ff1744;
-  animation: none;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 75px;
-  height: 75px;
-  background: #ff1744;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -38px;
-  left: 0;
-}
-
-.heart::after {
-  left: 38px;
-  top: 0;
-}
-
-@keyframes throwHeart {
-  0% {
-    left: 25%;
-    bottom: 48%;
-    transform: rotate(-45deg) scale(1);
-  }
-
-  70% {
-    transform: rotate(-45deg) scale(1.15);
-  }
-
-  100% {
-    left: 72%;
-    bottom: 48%;
-    transform: rotate(-45deg) scale(.8);
-  }
-}
-
-/* Impact */
-@keyframes hitBoy {
-  0%, 100% {
-    transform: scale(.75) rotate(0);
-  }
-
-  30% {
-    transform: scale(.85) rotate(-5deg);
-  }
-
-  60% {
-    transform: scale(.72) rotate(5deg);
-  }
-}
-
-/* Portal */
-.portal {
-  position: absolute;
-  width: 230px;
-  height: 360px;
-  border-radius: 50%;
-  border: 8px solid #9c7cff;
-  box-shadow:
-    0 0 25px #8f6fff,
-    0 0 60px #5d35d5 inset;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  z-index: 2;
-}
-
-@keyframes portalOpen {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Boy travelling */
-@keyframes travel {
-  0% {
-    right: 8%;
-    bottom: 5%;
-    transform: scale(.75);
-  }
-
-  25% {
-    right: 40%;
-    bottom: 45%;
-    transform: scale(.5);
-  }
-
-  50% {
-    right: 65%;
-    bottom: 55%;
-    transform: scale(.4);
-  }
-
-  75% {
-    right: 30%;
-    bottom: 65%;
-    transform: scale(.3);
-  }
-
-  100% {
-    right: 48%;
-    bottom: 45%;
-    transform: scale(.65);
-  }
-}
-
-/* Earth */
-.earth {
-  position: absolute;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
+.portal-bg{
   background:
-    radial-gradient(circle at 35% 35%, #55c7ff, #1260a8 55%, #031b38);
+    radial-gradient(circle,#41206c 0%,#150c2b 40%,#030107 85%);
+}
+
+.snow-bg{
+  background:
+    linear-gradient(#dcefff 0%,#9ec5e4 48%,#507b9d 100%);
+}
+
+.desert-bg{
+  background:
+    linear-gradient(#f9d894 0%,#e6a950 45%,#a95c2b 100%);
+}
+
+.space-bg{
+  background:
+    radial-gradient(circle at 50% 50%,#071e43 0%,#020817 35%,#000 80%);
+}
+
+/* ---------- GIRL / BOY ---------- */
+
+.person{
+  position:absolute;
+  object-fit:contain;
+  z-index:5;
+  user-select:none;
+  pointer-events:none;
+}
+
+.girl{
+  width:min(48vw,360px);
+  height:78vh;
+  left:3vw;
+  bottom:2vh;
+}
+
+.boy{
+  width:min(43vw,330px);
+  height:73vh;
+  right:5vw;
+  bottom:3vh;
+}
+
+/* ---------- HEART ---------- */
+
+.heart{
+  position:absolute;
+  width:58px;
+  height:58px;
+  left:27%;
+  top:42%;
+  z-index:12;
+  transform:rotate(-45deg);
+  background:#ff1744;
+  filter:
+    drop-shadow(0 0 8px #ff1744)
+    drop-shadow(0 0 20px rgba(255,23,68,.8));
+}
+
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#ff1744;
+}
+
+.heart:before{
+  top:-29px;
+  left:0;
+}
+
+.heart:after{
+  left:29px;
+  top:0;
+}
+
+/* ---------- HEART THROW ---------- */
+
+.throw{
+  animation:throwHeart 1.8s cubic-bezier(.15,.8,.2,1) forwards;
+}
+
+@keyframes throwHeart{
+
+  0%{
+    left:27%;
+    top:42%;
+    transform:rotate(-45deg) scale(1);
+  }
+
+  20%{
+    transform:rotate(-35deg) scale(1.15);
+  }
+
+  55%{
+    left:52%;
+    top:36%;
+    transform:rotate(15deg) scale(1.1);
+  }
+
+  100%{
+    left:75%;
+    top:43%;
+    transform:rotate(45deg) scale(.72);
+  }
+}
+
+/* ---------- IMPACT ---------- */
+
+.hit{
+  animation:hit .7s ease-in-out 2;
+}
+
+@keyframes hit{
+
+  0%,100%{
+    transform:translateX(0) rotate(0);
+  }
+
+  20%{
+    transform:translateX(-18px) rotate(-5deg);
+  }
+
+  40%{
+    transform:translateX(18px) rotate(5deg);
+  }
+
+  60%{
+    transform:translateX(-10px) rotate(-3deg);
+  }
+
+  80%{
+    transform:translateX(7px) rotate(2deg);
+  }
+}
+
+/* ---------- IMPACT FLASH ---------- */
+
+.flash{
+  position:absolute;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  left:75%;
+  top:43%;
+  transform:translate(-50%,-50%) scale(0);
+  background:rgba(255,255,255,.9);
   box-shadow:
-    0 0 35px #3da9ff,
-    inset -20px -20px 35px rgba(0,0,0,.5);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  z-index: 1;
+    0 0 30px #fff,
+    0 0 80px #ff3158;
+  z-index:20;
+  pointer-events:none;
 }
 
-@keyframes earthAppear {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
+.flash.active{
+  animation:flash .65s ease-out;
 }
 
-/* Final scene */
-.hug {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 20;
-  opacity: 0;
-  transform: scale(.8);
-}
-
-@keyframes finalHug {
-  0% {
-    opacity: 0;
-    transform: scale(.8);
+@keyframes flash{
+  0%{
+    transform:translate(-50%,-50%) scale(0);
+    opacity:1;
   }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
+  35%{
+    transform:translate(-50%,-50%) scale(1);
+    opacity:.9;
+  }
+  100%{
+    transform:translate(-50%,-50%) scale(2);
+    opacity:0;
   }
 }
 
-/* Scene labels */
-.label {
-  position: absolute;
-  top: 7%;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: clamp(20px, 4vw, 38px);
-  font-weight: bold;
-  opacity: 0;
-  z-index: 30;
-  text-shadow: 0 2px 8px #000;
+/* ---------- PORTAL ---------- */
+
+.portal{
+  position:absolute;
+  width:190px;
+  height:320px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) scale(0);
+  border-radius:50%;
+  border:8px solid #b78cff;
+  background:radial-gradient(
+    ellipse,
+    rgba(194,151,255,.4),
+    rgba(80,30,150,.15),
+    transparent 70%
+  );
+  box-shadow:
+    0 0 25px #b78cff,
+    0 0 70px #7541d8,
+    inset 0 0 45px #9d6dff;
+  z-index:4;
 }
 
-@keyframes showLabel {
-  0%,100% { opacity: 0; }
-  30%,70% { opacity: 1; }
+.portal.open{
+  animation:portalOpen 1.2s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-/* Snow */
-.snow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  z-index: 15;
+@keyframes portalOpen{
+  0%{
+    transform:translate(-50%,-50%) scale(0) rotate(-10deg);
+    opacity:0;
+  }
+
+  70%{
+    transform:translate(-50%,-50%) scale(1.15) rotate(3deg);
+    opacity:1;
+  }
+
+  100%{
+    transform:translate(-50%,-50%) scale(1) rotate(0);
+    opacity:1;
+  }
+}
+
+/* ---------- TRAVEL BOY ---------- */
+
+.travel-boy{
+  animation:travelBoy 4s cubic-bezier(.4,.1,.2,1) forwards;
+}
+
+@keyframes travelBoy{
+
+  0%{
+    right:4vw;
+    bottom:3vh;
+    transform:scale(.72);
+  }
+
+  20%{
+    right:44%;
+    bottom:38%;
+    transform:scale(.38);
+  }
+
+  40%{
+    right:67%;
+    bottom:55%;
+    transform:scale(.27);
+  }
+
+  60%{
+    right:34%;
+    bottom:67%;
+    transform:scale(.23);
+  }
+
+  80%{
+    right:20%;
+    bottom:42%;
+    transform:scale(.31);
+  }
+
+  100%{
+    right:46%;
+    bottom:38%;
+    transform:scale(.58);
+  }
+}
+
+/* ---------- SNOW ---------- */
+
+.snow{
+  position:absolute;
+  inset:-100px;
+  z-index:10;
+  opacity:0;
+  pointer-events:none;
+
   background-image:
-    radial-gradient(circle, white 2px, transparent 3px),
-    radial-gradient(circle, white 1px, transparent 2px);
-  background-size: 55px 55px, 35px 35px;
-  animation: snowFall 2s linear infinite;
+    radial-gradient(circle,white 0 2px,transparent 3px),
+    radial-gradient(circle,rgba(255,255,255,.8) 0 1px,transparent 2px),
+    radial-gradient(circle,white 0 3px,transparent 4px);
+
+  background-size:
+    55px 55px,
+    35px 35px,
+    90px 90px;
+
+  animation:snowFall .7s linear infinite;
 }
 
-@keyframes snowFall {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 0 400px, 100px 300px; }
+.snow.show{
+  opacity:.85;
 }
 
-/* Desert */
-.desert {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
+@keyframes snowFall{
+  from{
+    background-position:0 0,0 0,0 0;
+  }
+
+  to{
+    background-position:30px 500px,-40px 400px,60px 600px;
+  }
+}
+
+/* ---------- DESERT WIND ---------- */
+
+.sand{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  z-index:2;
+  pointer-events:none;
+
   background:
-    linear-gradient(#eab86c 0 45%, #c77b32 45% 100%);
-  z-index: 0;
+    radial-gradient(
+      ellipse at 20% 100%,
+      #b96d31 0 20%,
+      transparent 21%
+    ),
+    radial-gradient(
+      ellipse at 75% 100%,
+      #a75c2b 0 28%,
+      transparent 29%
+    );
 }
 
-.desert::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 45%;
-  bottom: 0;
+.sand.show{
+  opacity:1;
+}
+
+.sand::after{
+  content:"";
+  position:absolute;
+  width:160%;
+  height:25%;
+  left:-30%;
+  bottom:12%;
+  border-radius:50%;
+  border-top:4px solid rgba(255,220,150,.35);
+  border-bottom:3px solid rgba(130,70,30,.2);
+  transform:rotate(-4deg);
+}
+
+/* ---------- EARTH ---------- */
+
+.earth{
+  position:absolute;
+  width:180px;
+  height:180px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) scale(0);
+  border-radius:50%;
+
   background:
-    radial-gradient(ellipse at 30% 100%, #9b5428 0 35%, transparent 36%),
-    radial-gradient(ellipse at 75% 100%, #a75b29 0 40%, transparent 41%);
+    radial-gradient(
+      circle at 32% 30%,
+      #7ee5ff 0 8%,
+      #258bd0 35%,
+      #07518e 65%,
+      #021c38 100%
+    );
+
+  box-shadow:
+    0 0 25px #40bfff,
+    0 0 70px rgba(40,160,255,.55),
+    inset -25px -15px 35px rgba(0,0,0,.7);
+
+  z-index:2;
 }
 
-/* Timeline classes */
-.scene1 .heart {
-  animation: throwHeart 2s ease-in-out forwards;
+.earth.show{
+  animation:earthIn 1s ease-out forwards;
 }
 
-.scene2 .boy {
-  animation: hitBoy .6s ease-in-out 2;
+@keyframes earthIn{
+  from{
+    transform:translate(-50%,-50%) scale(0);
+  }
+
+  to{
+    transform:translate(-50%,-50%) scale(1);
+  }
 }
 
-.scene3 .portal {
-  animation: portalOpen 1s forwards;
+/* ---------- ORBIT RING ---------- */
+
+.orbit{
+  position:absolute;
+  width:440px;
+  height:220px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(150,210,255,.35);
+  border-radius:50%;
+  opacity:0;
+  z-index:1;
 }
 
-.scene4 .snow {
-  opacity: .75;
+.orbit.show{
+  opacity:1;
 }
 
-.scene5 .desert {
-  opacity: 1;
+/* ---------- SPACE BOY ORBIT ---------- */
+
+.orbit-boy{
+  animation:orbitBoy 3.5s linear forwards;
 }
 
-.scene6 .earth {
-  animation: earthAppear 1s forwards;
+@keyframes orbitBoy{
+
+  0%{
+    right:46%;
+    bottom:38%;
+    transform:scale(.58) rotate(0);
+  }
+
+  25%{
+    right:25%;
+    bottom:65%;
+    transform:scale(.34) rotate(90deg);
+  }
+
+  50%{
+    right:3%;
+    bottom:42%;
+    transform:scale(.27) rotate(180deg);
+  }
+
+  75%{
+    right:25%;
+    bottom:15%;
+    transform:scale(.34) rotate(270deg);
+  }
+
+  100%{
+    right:46%;
+    bottom:38%;
+    transform:scale(.58) rotate(360deg);
+  }
 }
 
-.scene6 .boy {
-  animation: travel 4s ease-in-out forwards;
+/* ---------- STARS ---------- */
+
+.stars{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  background-image:
+    radial-gradient(circle,#fff 1px,transparent 2px),
+    radial-gradient(circle,#fff 1px,transparent 2px),
+    radial-gradient(circle,#fff 2px,transparent 3px);
+
+  background-size:90px 90px,130px 130px,200px 200px;
+  background-position:20px 30px,70px 90px,100px 20px;
+  z-index:0;
 }
 
-.scene7 .hug {
-  animation: finalHug 1.5s ease-out forwards;
+.stars.show{
+  opacity:.7;
 }
 
-.scene7 .girl,
-.scene7 .boy,
-.scene7 .heart,
-.scene7 .portal,
-.scene7 .earth,
-.scene7 .snow,
-.scene7 .desert {
-  display: none;
+/* ---------- FINAL HUG ---------- */
+
+.hug{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  z-index:50;
+  opacity:0;
+  transform:scale(.65);
+  pointer-events:none;
 }
+
+.hug.show{
+  animation:hugIn 1.7s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes hugIn{
+  0%{
+    opacity:0;
+    transform:scale(.65);
+  }
+
+  70%{
+    opacity:1;
+    transform:scale(1.05);
+  }
+
+  100%{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* ---------- HEARTS AT END ---------- */
+
+.final-hearts{
+  position:absolute;
+  inset:0;
+  z-index:60;
+  pointer-events:none;
+  opacity:0;
+}
+
+.final-hearts.show{
+  opacity:1;
+}
+
+.final-hearts span{
+  position:absolute;
+  font-size:28px;
+  animation:floatHeart 2.5s ease-in-out infinite;
+}
+
+.final-hearts span:nth-child(1){
+  left:20%;
+  bottom:15%;
+}
+
+.final-hearts span:nth-child(2){
+  left:72%;
+  bottom:20%;
+  animation-delay:.4s;
+}
+
+.final-hearts span:nth-child(3){
+  left:35%;
+  bottom:10%;
+  animation-delay:.8s;
+}
+
+.final-hearts span:nth-child(4){
+  left:82%;
+  bottom:35%;
+  animation-delay:1.1s;
+}
+
+@keyframes floatHeart{
+  0%{
+    transform:translateY(20px) scale(.6);
+    opacity:0;
+  }
+
+  30%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(-120px) scale(1.2);
+    opacity:0;
+  }
+}
+
+/* ---------- FADE ---------- */
+
+.fade{
+  position:absolute;
+  inset:0;
+  background:#000;
+  z-index:100;
+  opacity:0;
+  pointer-events:none;
+}
+
+.fade.on{
+  animation:fadeScreen 1s ease;
+}
+
+@keyframes fadeScreen{
+  0%{opacity:0}
+  50%{opacity:.65}
+  100%{opacity:0}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="scene" id="scene">
+<div class="stage">
 
-  <div class="bg" id="bg"></div>
-  <div class="desert"></div>
-  <div class="snow"></div>
+  <div class="background home" id="background"></div>
 
-  <div class="portal"></div>
-  <div class="earth"></div>
+  <div class="stars" id="stars"></div>
 
-  <img src="girl.png" class="person girl">
-  <img src="boy.png" class="person boy">
+  <div class="sand" id="sand"></div>
 
-  <div class="heart"></div>
+  <div class="snow" id="snow"></div>
 
-  <img src="hug.png" class="hug">
+  <div class="orbit" id="orbit"></div>
 
-  <div class="label" id="label"></div>
+  <div class="earth" id="earth"></div>
+
+  <div class="portal" id="portal"></div>
+
+  <img src="girl.png" class="person girl" id="girl">
+
+  <img src="boy.png" class="person boy" id="boy">
+
+  <div class="heart" id="heart"></div>
+
+  <div class="flash" id="flash"></div>
+
+  <img src="hug.png" class="hug" id="hug">
+
+  <div class="final-hearts" id="finalHearts">
+    <span>❤️</span>
+    <span>💗</span>
+    <span>❤️</span>
+    <span>💖</span>
+  </div>
+
+  <div class="fade" id="fade"></div>
 
 </div>
 
+
 <script>
 
-const scene = document.getElementById("scene");
-const bg = document.getElementById("bg");
-const label = document.getElementById("label");
+const bg = document.getElementById("background");
+const girl = document.getElementById("girl");
+const boy = document.getElementById("boy");
+const heart = document.getElementById("heart");
+const flash = document.getElementById("flash");
+const portal = document.getElementById("portal");
+const snow = document.getElementById("snow");
+const sand = document.getElementById("sand");
+const stars = document.getElementById("stars");
+const earth = document.getElementById("earth");
+const orbit = document.getElementById("orbit");
+const hug = document.getElementById("hug");
+const finalHearts = document.getElementById("finalHearts");
+const fade = document.getElementById("fade");
 
-function changeScene(number, text, background) {
 
-  scene.className = "scene scene" + number;
-
-  label.textContent = text;
-  label.style.animation = "none";
-  void label.offsetWidth;
-  label.style.animation = "showLabel 2.5s ease";
-
-  if (background) {
-    bg.style.background = background;
-  }
+function resetAnimation(element){
+  element.style.animation="none";
+  void element.offsetWidth;
+  element.style.animation="";
 }
 
-/* Start */
-changeScene(
-  1,
-  "A little heart... ❤️",
-  "radial-gradient(circle at center, #5b1025, #120008)"
-);
 
-/* Heart hits boy */
-setTimeout(() => {
+/* 0 sec
+   GIRL + HEART
+*/
 
-  changeScene(
-    2,
-    "Straight to his heart ❤️",
-    "radial-gradient(circle at center, #42132b, #09000a)"
-  );
+setTimeout(()=>{
 
-}, 2600);
+  bg.className="background home";
 
-/* Portal */
-setTimeout(() => {
+},100);
 
-  changeScene(
-    3,
-    "And then... he begins the journey ✨",
-    "radial-gradient(circle at center, #26164f, #05020d)"
-  );
 
-}, 3900);
+/* 2.5 sec
+   THROW HEART
+*/
 
-/* Snow */
-setTimeout(() => {
+setTimeout(()=>{
 
-  changeScene(
-    4,
-    "Through the snow ❄️",
-    "linear-gradient(#b9d9f5, #547fa8)"
-  );
+  resetAnimation(heart);
+  heart.classList.add("throw");
 
-}, 5400);
+},2500);
 
-/* Desert */
-setTimeout(() => {
 
-  changeScene(
-    5,
-    "Across the desert 🏜️",
-    "linear-gradient(#f4c879, #b96b2c)"
-  );
+/* 4.3 sec
+   HIT BOY
+*/
 
-}, 7800);
+setTimeout(()=>{
 
-/* Earth */
-setTimeout(() => {
+  resetAnimation(boy);
+  boy.classList.add("hit");
 
-  changeScene(
-    6,
-    "Around the whole world 🌍",
-    "radial-gradient(circle, #071f3d, #000 70%)"
-  );
+  flash.classList.remove("active");
+  void flash.offsetWidth;
+  flash.classList.add("active");
 
-}, 10200);
+},4300);
 
-/* Final hug */
-setTimeout(() => {
 
-  changeScene(
-    7,
-    "And finally... back to you ❤️",
-    "linear-gradient(#180713, #000)"
-  );
+/* 5.8 sec
+   PORTAL
+*/
 
-}, 14800);
+setTimeout(()=>{
+
+  bg.className="background portal-bg";
+
+  girl.style.opacity="0";
+  heart.style.opacity="0";
+
+  portal.classList.add("open");
+
+},5800);
+
+
+/* 7.2 sec
+   SNOW
+*/
+
+setTimeout(()=>{
+
+  bg.className="background snow-bg";
+
+  portal.style.opacity="0";
+
+  snow.classList.add("show");
+
+  resetAnimation(boy);
+  boy.classList.add("travel-boy");
+
+},7200);
+
+
+/* 10.8 sec
+   DESERT
+*/
+
+setTimeout(()=>{
+
+  bg.className="background desert-bg";
+
+  snow.classList.remove("show");
+
+  sand.classList.add("show");
+
+},10800);
+
+
+/* 13.8 sec
+   SPACE
+*/
+
+setTimeout(()=>{
+
+  bg.className="background space-bg";
+
+  sand.classList.remove("show");
+
+  stars.classList.add("show");
+
+  earth.classList.add("show");
+
+  orbit.classList.add("show");
+
+},13800);
+
+
+/* 15 sec
+   EARTH ORBIT
+*/
+
+setTimeout(()=>{
+
+  resetAnimation(boy);
+  boy.classList.remove("travel-boy");
+  boy.classList.add("orbit-boy");
+
+},15000);
+
+
+/* 18.5 sec
+   RETURN TO GIRL
+*/
+
+setTimeout(()=>{
+
+  resetAnimation(boy);
+
+  boy.style.right="47%";
+  boy.style.bottom="37%";
+  boy.style.transform="scale(.58)";
+
+  stars.classList.remove("show");
+  orbit.classList.remove("show");
+  earth.classList.remove("show");
+
+  bg.className="background home";
+
+},18500);
+
+
+/* 21 sec
+   FINAL HUG
+*/
+
+setTimeout(()=>{
+
+  fade.classList.remove("on");
+  void fade.offsetWidth;
+  fade.classList.add("on");
+
+  setTimeout(()=>{
+
+    girl.style.display="none";
+    boy.style.display="none";
+
+    hug.classList.add("show");
+
+    finalHearts.classList.add("show");
+
+  },450);
+
+},21000);
+
+
+/* 25 sec
+   MORE HEARTS
+*/
+
+setTimeout(()=>{
+
+  finalHearts.classList.add("show");
+
+},25000);
 
 </script>
 
